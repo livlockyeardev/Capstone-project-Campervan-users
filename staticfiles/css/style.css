@@ -1,0 +1,255 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #484848;
+    background-color: #ffffff;
+}
+
+/* Color Scheme */
+:root {
+    --primary-pink: #FFB6C1;
+    --light-pink: #FFE4E9;
+    --dark-pink: #FF8FA3;
+    --text-dark: #484848;
+    --text-light: #767676;
+    --white: #ffffff;
+    --border: #EBEBEB;
+}
+
+/* Navbar Styles */
+.navbar {
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    background-color: var(--white) !important;
+}
+
+.navbar-brand .brand {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-pink) !important;
+    letter-spacing: -0.5px;
+}
+
+.nav-link {
+    color: var(--text-dark) !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--dark-pink) !important;
+}
+
+.nav-link.active {
+    color: var(--dark-pink) !important;
+    border-bottom: 2px solid var(--dark-pink);
+}
+
+/* Main Content */
+main {
+    background-color: var(--white);
+    min-height: calc(100vh - 200px);
+}
+
+.main-bg {
+    background-color: var(--white);
+}
+
+/* Card Styles */
+.card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+.card-title {
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+/* Form Styles */
+form label {
+    color: var(--text-dark);
+    font-family: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 500;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary-pink);
+    box-shadow: 0 0 0 3px var(--light-pink);
+    outline: none;
+}
+
+/* Button Styles */
+.btn-primary {
+    background: linear-gradient(to right, var(--primary-pink), var(--dark-pink));
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, var(--dark-pink), var(--primary-pink));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 182, 193, 0.4);
+}
+
+.btn-success {
+    background-color: var(--dark-pink);
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: var(--primary-pink);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 182, 193, 0.4);
+}
+
+.btn-outline-secondary {
+    border: 2px solid var(--primary-pink);
+    color: var(--primary-pink);
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--light-pink);
+    border-color: var(--dark-pink);
+    color: var(--dark-pink);
+}
+
+/* Alert Styles */
+.alert {
+    border-radius: 8px;
+    border: none;
+}
+
+.alert-success {
+    background-color: var(--light-pink);
+    color: var(--text-dark);
+}
+
+/* Footer Styles */
+.footer {
+    background-color: var(--light-pink);
+    border-top: 1px solid var(--border);
+    padding: 2rem 0;
+}
+
+.dark-bg {
+    background-color: var(--light-pink) !important;
+}
+
+.footer h5 {
+    color: var(--text-dark) !important;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.footer p {
+    color: var(--text-dark) !important;
+    font-size: 0.9rem;
+}
+
+.footer i {
+    color: var(--dark-pink) !important;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.footer i:hover {
+    color: var(--primary-pink) !important;
+}
+
+.footer hr {
+    background-color: var(--border) !important;
+}
+
+/* Container Styles */
+.container {
+    max-width: 1200px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+p {
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem;
+    }
+    
+    .card-body {
+        padding: 1.5rem;
+    }
+    
+    .footer {
+        text-align: center;
+    }
+}
+
+/* Shadow utilities */
+.shadow {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Text utilities */
+.text-muted {
+    color: var(--text-light) !important;
+}
+
+/* Spacing */
+.mt-5 {
+    margin-top: 3rem !important;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
