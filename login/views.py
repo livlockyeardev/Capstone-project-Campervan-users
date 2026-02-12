@@ -1,11 +1,10 @@
-from django.shortcuts import render
-
-# Create your views here.
-wex\capstone\yourapp\views.py
 
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import SignupForm
+
+# Create your views here.
+
 
 def signup(request):
     if request.method == 'POST':
