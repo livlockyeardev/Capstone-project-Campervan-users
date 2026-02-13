@@ -1,6 +1,6 @@
 {% load static %} 
 {% url 'signup' as signup %} 
-{% url 'add_listing' as add_listing %}
+{% url 'create-listing' as add_listing %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
@@ -78,7 +78,7 @@
             <li class="nav-item">
               <a
                 aria-current="page"
-                href=""
+                href="{{ add_listing }}"
                 >Add Listing</a
               >
             </li>
