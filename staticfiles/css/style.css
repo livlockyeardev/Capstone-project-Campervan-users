@@ -39,6 +39,17 @@ body, button, input, textarea, select, .btn, .nav-link, .card, .modal {
     color: var(--primary-pink) !important;
     letter-spacing: -0.5px;
 }
+.navbar .nav-link,
+.navbar a {
+  color: #333;
+  text-decoration: none;
+}
+
+.navbar .nav-link:hover,
+.navbar a:hover {
+  color: #111;
+  text-decoration: none;
+}
 
 .nav-item {
     color: var(--white) !important;
@@ -155,6 +166,12 @@ h1, h2, h3, h4, h5, h6,
     font-size: 1.5rem;
 }
 
+.card-img-top,
+.listing-card img {
+  height: 200px;
+  object-fit: cover;
+  width: 100%;
+}
 /* Form Styles */
 form label {
     color: var(--text-dark);
