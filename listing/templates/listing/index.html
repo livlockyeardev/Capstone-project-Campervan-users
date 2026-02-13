@@ -2,6 +2,21 @@
 {% load static %}
 {% block content %}
 <!-- index.html content starts here -->
+ <!-- Hero Section -->
+<section class="hero">
+  <div class="hero__media" aria-hidden="true">
+    <img 
+      class="hero__image" 
+      src="{% static 'images/hero.png' %}" 
+      alt="Hero banner - vintage campervan"
+    />
+    <div class="hero__overlay"></div>
+  </div>
+  <div class="hero__content container">
+    <h1 class="hero__title">Find your groove.</h1>
+    <p class="hero__subtitle">Discover unique parkup spots for your retro wheels</p>
+  </div>
+</section>
 <div class="container-fluid">
   <div class="row">
     <!-- Blog Entries Column -->
@@ -73,7 +88,7 @@
                   {% if "placeholder" in listing.featured_image.url %}
                   <img
                     class="img-fluid rounded"
-                    src="{% static 'images/default.jpg' %}"
+                    src="{% static 'images/van-life.webp' %}"
                     alt="placeholder image"
                   />
                   {% else %}

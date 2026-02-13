@@ -1,6 +1,9 @@
 {% load static %} 
 {% url 'signup' as signup %} 
 {% url 'add_listing' as add_listing %}
+{% url 'account_login' as login_url %}
+{% url 'account_signup' as signup_url %}
+{% url 'account_logout' as logout_url %}
 <!doctype html>
 <html class="h-100" lang="en">
   <head>
@@ -68,7 +71,7 @@
             <li class="nav-item">
               <a
                 aria-current="page"
-                href=""
+                href="{{ logout_url }}"
                 >Logout</a
               >
             </li>
@@ -83,14 +86,14 @@
             <li class="nav-item">
               <a
                 aria-current="page"
-                href=""
+                href="{{ signup_url }}"
                 >Register</a
               >
             </li>
             <li class="nav-item">
               <a
                 aria-current="page"
-                href=""
+                href="{{ login_url }}"
                 >Login</a
               >
             </li>

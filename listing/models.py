@@ -12,6 +12,7 @@ class Listing(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="blog_posts"
     )
+    # featured_image = CloudinaryField('image', default='placeholder')
     description = models.TextField()
     location = models.CharField(max_length=20)
     toilet_available = models.BooleanField(default=False)
