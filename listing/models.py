@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User # Import models to connect
+from django.contrib.auth.models import User
+
 
 NOISE_LEVELS = ((0, "Quiet"), (1, "Moderate"), (2, "Loud"))
 # Create your models here.
@@ -12,7 +13,7 @@ class Listing(models.Model):
         User, on_delete=models.CASCADE, related_name="blog_posts"
     )
     description = models.TextField()
-    postcode = models.CharField(max_length=20)
+    location = models.CharField(max_length=20)
     toilet_available = models.BooleanField(default=False)
     noise_level = models.IntegerField(choices=NOISE_LEVELS, default=0)
     min_nights = models.IntegerField()

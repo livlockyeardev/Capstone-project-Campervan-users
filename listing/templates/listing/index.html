@@ -1,0 +1,129 @@
+{% extends "base.html" %} 
+{% load static %}
+{% block content %}
+<!-- index.html content starts here -->
+<div class="container-fluid">
+  <div class="row">
+    <!-- Blog Entries Column -->
+    <div class="col-12 mt-3 left">
+      <div class="row">
+        {% for listing in listing_list %}
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <div class="image-container position-relative">
+              {% if "placeholder" in listing.featured_image.url %}
+              <img
+                class="card-img-top"
+                src="{% static 'images/default.jpg' %}"
+                alt="placeholder image"
+              />
+              {% else %}
+              <img
+                class="card-img-top"
+                src=" {{ listing.featured_image.url }}"
+                alt="{{ listing.title }}"
+              />
+              {% endif %}
+              
+              <!-- Price Badge -->
+              {% if listing.price %}
+              <span class="badge bg-danger position-absolute top-0 end-0 m-2" style="font-size: 0.9rem;">£{{ listing.price }}</span>
+              {% endif %}
+              
+              <!-- Toilet Icon -->
+              {% if listing.toilet_available %}
+              <span class="position-absolute bottom-0 start-0 m-2" style="font-size: 1.5rem;" title="Toilet Available">🚰</span>
+              {% endif %}
+            </div>
+            <div class="card-body">
+              <button
+                type="button"
+                class="post-link btn btn-link p-0 text-start"
+                data-bs-toggle="modal"
+                data-bs-target="#listingModal-{{ listing.slug }}"
+              >
+                <h2 class="card-title">{{ listing.title }}</h2>
+              </button>
+              <p class="text-muted small">{{ listing.location }}</p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="modal fade"
+          id="listingModal-{{ listing.slug }}"
+          tabindex="-1"
+          aria-labelledby="listingModalLabel-{{ listing.slug }}"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="listingModalLabel-{{ listing.slug }}">
+                  {{ listing.title }}
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div class="mb-3">
+                  {% if "placeholder" in listing.featured_image.url %}
+                  <img
+                    class="img-fluid rounded"
+                    src="{% static 'images/default.jpg' %}"
+                    alt="placeholder image"
+                  />
+                  {% else %}
+                  <img
+                    class="img-fluid rounded"
+                    src=" {{ listing.featured_image.url }}"
+                    alt="{{ listing.title }}"
+                  />
+                  {% endif %}
+                </div>
+                <p class="text-muted mb-2">{{ listing.location }}</p>
+                <p class="mb-3">{{ listing.description }}</p>
+                <div class="d-flex flex-wrap gap-2">
+                  {% if listing.price_per_night %}
+                  <span class="badge bg-danger">£{{ listing.price_per_night }} / night</span>
+                  {% endif %}
+                  {% if listing.toilet_available %}
+                  <span class="badge bg-success">Toilet Available</span>
+                  {% else %}
+                  <span class="badge bg-secondary">No Toilet</span>
+                  {% endif %}
+                  <span class="badge bg-light text-dark">
+                    Noise: {{ listing.get_noise_level_display }}
+                  </span>
+                  <span class="badge bg-light text-dark">
+                    Min nights: {{ listing.min_nights }}
+                  </span>
+                  <span class="badge bg-light text-dark">
+                    Max nights: {{ listing.max_nights }}
+                  </span>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                  Close
+                </button>
+                <button type="button" class="btn btn-primary">
+                  Book now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% if forloop.counter|divisibleby:4 %}
+      </div>
+      <div class="row">{% endif %} {% endfor %}</div>
+    </div>
+  </div>
+</div>
+
+<!-- index.html content ends here -->
+
+{% endblock %}

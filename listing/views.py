@@ -5,6 +5,5 @@ from .models import Listing
 
 # Create your views here.
 class ListingList(generic.ListView):
-    model = Listing
-    template_name = "listing.html"
-    context_object_name = "listings"
+    queryset = Listing.objects.all().order_by("-created_on")
+    template_name = "listing/index.html"
