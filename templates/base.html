@@ -1,6 +1,7 @@
 {% load static %} 
 {% url 'signup' as signup %} 
 {% url 'create-listing' as add_listing %}
+{% url 'home' as home_url %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
@@ -42,11 +43,9 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
       <div class="container-fluid">
-        <a class="navbar-brand" href=""
-          ><span class="brand">DriveAway</span
-            ></span
-          ></a
-        >
+        <a class="navbar-brand" href="{{ home_url }}">
+          <span class="brand">DriveAway</span>
+        </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -60,13 +59,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a
-                aria-current="page"
-                href=""
-                >Home</a
-              >
-            </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
               <a
@@ -100,7 +92,7 @@
             {% endif %}
           </ul>
           <span class="navbar-text text-muted">
-            <i class="fas fa-user">
+            <i class="fas fa-user"></i>
           </span>
         </div>
       </div>
