@@ -195,8 +195,42 @@ form label {
     outline: none;
 }
 
+/* Create Listing Form */
+
+#create-listing-form {
+  width: 100%;
+  margin: 0 10vw; /* 10% of screen width on left/right */
+}
+
+/* Small devices: remove the 10vw gap */
+@media (max-width: 576px) {
+  #create-listing-form {
+    margin: 0 1rem;
+  }
+}
+
+/* Match navbar button styling (Bootstrap-like) */
+#create-listing-form .btn,
+#create-listing-form input[type="submit"] {
+ background: linear-gradient(to right, var(--primary-pink), var(--dark-pink));
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    margin-bottom: 0.75rem;
+}
+
+#create-listing-form .btn:hover,
+#create-listing-form input[type="submit"]:hover {
+ background: linear-gradient(to right, var(--dark-pink), var(--primary-pink));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 182, 193, 0.4);
+}
+
 /* Button Styles */
-.btn-primary {
+.btn {
     background: linear-gradient(to right, var(--primary-pink), var(--dark-pink));
     border: none;
     border-radius: 8px;
@@ -206,7 +240,7 @@ form label {
     transition: all 0.3s ease;
 }
 
-.btn-primary:hover {
+.btn:hover {
     background: linear-gradient(to right, var(--dark-pink), var(--primary-pink));
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(255, 182, 193, 0.4);
