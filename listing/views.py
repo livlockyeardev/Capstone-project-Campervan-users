@@ -21,3 +21,12 @@ class ListingCreate(LoginRequiredMixin, generic.CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+    
+
+class ManageListings(LoginRequiredMixin, generic.ListView):
+    model = Listing
+    template_name = "listing/manage_listings.html"
+    context_object_name = "listings"
+
+    def get_queryset(self):
+        return Listing.objects.filter(author=self.request.user).order_by("-created_on")
