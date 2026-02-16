@@ -1,9 +1,9 @@
 {% load static %} 
 {% url 'signup' as signup %} 
-{% url 'create-listing' as add_listing %}
-{% url 'home' as home_url %}
-{% url 'account_login' as login_url %}
-{% url 'account_signup' as signup_url %}
+{% url 'create-listing' as add_listing %} 
+{% url 'home' as home_url %} 
+{% url 'account_login' as login_url %} 
+{% url 'account_signup' as signup_url %} 
 {% url 'account_logout' as logout_url %}
 <!doctype html>
 <html class="h-100" lang="en">
@@ -18,7 +18,7 @@
       rel="stylesheet"
     />
     <link
-     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -46,91 +46,58 @@
         <a class="navbar-brand" href="{{ home_url }}">
           <span class="brand">DriveAway</span>
         </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarText"
-          aria-controls="navbarText"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a
-                aria-current="page"
-                href="{{ logout_url }}"
-                >Logout</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                aria-current="page"
-                href="{{ add_listing }}"
-                >Add Listing</a
-              >
-            </li>
-            {% else %}
-            <li class="nav-item">
-              <a
-                aria-current="page"
-                href="{{ signup_url }}"
-                >Register</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                aria-current="page"
-                href="{{ login_url }}"
-                >Login</a
-              >
-            </li>
-            {% endif %}
-          </ul>
+        
+        <div class="d-flex align-items-center">
           {% if user.is_authenticated %}
-          <div class="dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="userDropdown"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <i class="fas fa-user"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-              <li>
-                <a class="dropdown-item" href="{% url 'manage-listings' %}">
-                  Manage My Listings
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="">
-                  Manage My Bookings
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="">
-                  Account Settings
-                </a>
-              </li>
-            </ul>
-          </div>
+            <span class="navbar-text me-3">
+              Logged in as <strong>{{ user.username }}</strong>
+            </span>
+            <div class="dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="userDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fas fa-user"></i>
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="userDropdown"
+              >
+                <li>
+                  <a class="dropdown-item" href="{% url 'manage-listings' %}">
+                    Manage My Listings
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="">
+                    Manage My Bookings
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" href="{{ logout_url }}">
+                    Logout
+                  </a>
+                </li>
+              </ul>
+            </div>
           {% else %}
-          <span class="navbar-text text-muted">
-            <i class="fas fa-user"></i>
-          </span>
+            <a class="btn me-2" href="{{ signup_url }}">
+              Register
+            </a>
+            <a class="btn" href="{{ login_url }}">
+              Login
+            </a>
           {% endif %}
         </div>
       </div>
     </nav>
-<!-- displaying Django messages -->
-<!-- <div class="container">
+    <!-- displaying Django messages -->
+    <!-- <div class="container">
   <div class="row">
     <div class="col-md-8 offset-md-2">
       {% for message in messages %}
@@ -177,6 +144,5 @@
 
     <!-- {% block extras %}
     {% endblock %} -->
-
   </body>
 </html>

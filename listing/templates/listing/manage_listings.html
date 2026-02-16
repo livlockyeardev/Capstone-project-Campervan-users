@@ -3,7 +3,12 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h1 class="mb-4">Manage My Listings</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Manage My Listings</h1>
+        <a href="{% url 'create-listing' %}" class="btn btn-lg" title="Add new listing">
+            <i class="fas fa-plus"></i>
+        </a>
+    </div>
     
     {% if listings %}
         <div class="list-group">
@@ -37,17 +42,16 @@
                 <!-- Right: Action Buttons -->
                 <div class="d-flex gap-2 flex-shrink-0">
                     <!-- Edit Button -->
-                    <a href="" 
-                       class="btn btn-sm " 
+                    <a href="{% url 'edit-listing' listing.slug %}" 
+                       class="btn btn-sm btn-outline-secondary" 
                        title="Edit listing">
                         <i class="fas fa-pencil-alt"></i>
                     </a>
                     
                     <!-- Delete Button -->
-                    <a href="" 
-                       class="btn btn-sm" 
-                       title="Delete listing"
-                       onclick="return confirm('Are you sure you want to delete this listing?');">
+                    <a href="{% url 'delete-listing' listing.slug %}" 
+                       class="btn btn-sm btn-outline-danger" 
+                       title="Delete listing">
                         <i class="fas fa-times"></i>
                     </a>
                 </div>

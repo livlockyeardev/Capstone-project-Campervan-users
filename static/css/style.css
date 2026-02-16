@@ -166,12 +166,31 @@ h1, h2, h3, h4, h5, h6,
     font-size: 1.5rem;
 }
 
+/* Fix for card link buttons */
+.card-body .btn-link {
+    color: var(--text-dark);
+    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 0;
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+.card-body .btn-link:hover,
+.card-body .btn-link:focus {
+    color: var(--text-dark);
+    text-decoration: none;
+    background: none;
+}
+
 .card-img-top,
 .listing-card img {
   height: 200px;
   object-fit: cover;
   width: 100%;
 }
+
 /* Form Styles */
 form label {
     color: var(--text-dark);
