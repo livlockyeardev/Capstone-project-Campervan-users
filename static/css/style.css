@@ -394,3 +394,28 @@ p {
 .mb-4 {
     margin-bottom: 1.5rem !important;
 }
+
+/* in-app notifications for bookings */
+
+.pending-bookings-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.2rem;
+    height: 1.2rem;
+    padding: 0 0.3rem;
+    border-radius: 25px;
+    background: #dc3545;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.pending-bookings-badge-lg {
+    min-width: 2.4rem;
+    height: 2.4rem;
+    padding: 0 0.65rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+}

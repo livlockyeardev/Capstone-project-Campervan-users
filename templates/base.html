@@ -68,8 +68,11 @@
                 aria-labelledby="userDropdown"
               >
                 <li>
-                  <a class="dropdown-item" href="{% url 'manage-listings' %}">
-                    Manage My Listings
+                  <a class="dropdown-item d-flex align-items-center justify-content-between" href="{% url 'manage-listings' %}">
+                    <span>Manage My Listings</span>
+                    {% if pending_listing_bookings_count %}
+                      <span class="pending-bookings-badge ms-1">{{ pending_listing_bookings_count }}</span>
+                    {% endif %}
                   </a>
                 </li>
                 <li>

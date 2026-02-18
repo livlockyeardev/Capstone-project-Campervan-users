@@ -8,7 +8,7 @@
     {% csrf_token %}
     {{ form|crispy }}
     <button type="submit" class="btn">Save Listing</button>
-    <a href="{% url 'manage-listings' %}" class="btn btn-outline-secondary">Cancel</a>
+    <a href="{% url 'manage-listings' %}" class="btn">Cancel</a>
   </form>
 </div>
 {% endblock content %}

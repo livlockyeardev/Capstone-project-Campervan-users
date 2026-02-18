@@ -66,6 +66,7 @@ class BookingConfirmation(LoginRequiredMixin, DetailView):
         context["listing"] = self.object.listing
         return context
     
+    
 class ManageBookings(LoginRequiredMixin, ListView):
     model = Booking
     template_name = "booking/manage_bookings.html"

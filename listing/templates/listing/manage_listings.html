@@ -4,7 +4,14 @@
 {% block content %}
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>Manage My Listings</h1>
+        <h1 class="mb-0 d-flex align-items-center">
+            <span>Manage My Listings</span>
+            {% if pending_listing_bookings_count %}
+                <span class="pending-bookings-badge pending-bookings-badge-lg ms-2">
+                    {{ pending_listing_bookings_count }}
+                </span>
+            {% endif %}
+        </h1>
         <a href="{% url 'create-listing' %}" class="btn btn-lg" title="Add new listing">
             <i class="fas fa-plus"></i>
         </a>
@@ -43,7 +50,7 @@
                 <div class="d-flex gap-2 flex-shrink-0">
                     <!-- Edit Button -->
                     <a href="{% url 'edit-listing' listing.slug %}" 
-                       class="btn btn-sm btn-outline-secondary" 
+                       class="btn btn-sm" 
                        title="Edit listing">
                         <i class="fas fa-pencil-alt"></i>
                     </a>

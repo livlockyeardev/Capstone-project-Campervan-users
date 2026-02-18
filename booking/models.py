@@ -56,3 +56,5 @@ class Booking(models.Model):
         if self.listing_id:
             self.full_clean()
         super().save(*args, **kwargs)
+
+
