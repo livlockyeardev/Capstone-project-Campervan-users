@@ -58,12 +58,12 @@
 
       <!-- Action Buttons -->
       <div class="d-flex gap-2">
-        <a href="{% url 'home' %}" class="btn btn-outline-secondary">
+        <a href="{% url 'home' %}" class="btn">
           Back to Listings
         </a>
-        <button type="button" class="btn btn-primary">
-          Book now
-        </button>
+       <a href="{% url 'create-booking' listing.slug %}" type="submit" class="btn">
+            Book now
+       </a>
       </div>
     </div>
   </div>
