@@ -1,0 +1,40 @@
+[33me8e122e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m add in app booking notifications
+[33m296db73[m adhere to max/min nights requirements
+[33m5434930[m add booking confirmation page
+[33me40d20f[m add make booking form
+[33m839b8f1[m add create_booking form
+[33m120bb27[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m add sign up page styling
+[33m37dd070[m collectstatic
+[33mbb69e00[m add edit/delete listing and listing detail page
+[33mba11e55[m add manage listings page
+[33m32379ae[m add styling to create listing form
+[33m48f264b[m collect static
+[33m87dfc39[m fix navbar bug
+[33m9c56e8c[m add submit button and fix card height
+[33m7bcf9ac[m collect static
+[33me9cb00a[m add user upload image functionality
+[33m6699705[m collect static files
+[33m1755d9d[m add authentication and styling for login/logout pages
+[33m6a9da36[m add template for list view of listings and modal
+[33m728600e[m change debug
+[33me3c02c0[m refit models to delete custom user model
+[33m3d4fc08[m adjust middleware settings
+[33m5e44d31[m enable serving of static files
+[33me896805[m add css styling
+[33m6aabc03[m add login for existing users feature and redirect to listings page
+[33m0c30d89[m add base html and listings page/app
+[33mc942e19[m add signup model, view and form in login app
+[33m39713da[m add database
+[33m901949f[m add allowed host
+[33m67c5e4f[m set debug
+[33m6263824[m move Procfile
+[33m6e37c51[m add gunicorn package
+[33mcc71da2[m install whitenoise
+[33me3a47bc[m fix bug in procfile
+[33mdd33bb2[m debug for heroku
+[33m5e0115e[m second fix for requirements.txt
+[33mf49aa07[m fix bug with requirements list
+[33m9f1a62e[m deploy to heroku
+[33m3465036[m add Procfile and Python version
+[33m8a005dc[m initiate project
+[33m8826fe0[m first commit

@@ -4,6 +4,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from .models import Listing
 from .forms import ListingForm
+from django.db.models import Count, Q
+from django.views.generic import ListView
+from datetime import timedelta
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
+from booking.models import Booking
 
 
 # Create your views here.
@@ -29,13 +35,23 @@ class ListingCreate(LoginRequiredMixin, generic.CreateView):
         return super().form_valid(form)
    
 
-class ManageListings(LoginRequiredMixin, generic.ListView):
+class ManageListings(LoginRequiredMixin, ListView):
     model = Listing
     template_name = "listing/manage_listings.html"
     context_object_name = "listings"
 
     def get_queryset(self):
-        return Listing.objects.filter(author=self.request.user).order_by("-created_on")
+        return (
+            Listing.objects
+            .filter(author=self.request.user)
+            .annotate(
+                pending_bookings_count=Count(
+                    "bookings",
+                    filter=Q(bookings__status="pending")
+                )
+            )
+            .order_by("-created_on")
+        )
 
 
 class ListingUpdate(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
@@ -57,3 +73,31 @@ class ListingDelete(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView)
     def test_func(self):
         listing = self.get_object()
         return self.request.user == listing.author
+
+
+@login_required
+def listing_availability(request, slug):
+    listing = get_object_or_404(Listing, slug=slug, author=request.user)
+
+    confirmed_qs = Booking.objects.filter(listing=listing, status="confirmed").order_by("check_in")
+    pending_bookings = Booking.objects.filter(listing=listing, status="pending").order_by("check_in")
+
+    confirmed_events = [
+        {
+            "title": "Booked",
+            "start": b.check_in.isoformat(),
+            "end": (b.check_out + timedelta(days=1)).isoformat(),  # FullCalendar end is exclusive
+            "allDay": True,
+        }
+        for b in confirmed_qs
+    ]
+
+    return render(
+        request,
+        "listing/listing_availability.html",
+        {
+            "listing": listing,
+            "confirmed_events": confirmed_events,
+            "pending_bookings": pending_bookings,
+        },
+    )
