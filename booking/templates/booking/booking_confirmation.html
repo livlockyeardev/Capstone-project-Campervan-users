@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-4">
+  <h1>You're all set!</h1>
+
+  <p>
+    Your booking has been processed for <strong>{{ listing.name }}</strong>
+    from <strong>{{ booking.check_in }}</strong> to <strong>{{ booking.check_out }}</strong>.
+  </p>
+
+  <p>
+    To view and manage this booking, click on your account and
+    <strong>'Manage My Bookings'</strong>.
+  </p>
+</div>
+{% endblock %}
