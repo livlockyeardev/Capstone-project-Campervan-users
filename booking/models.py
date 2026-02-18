@@ -30,6 +30,7 @@ class Booking(models.Model):
         ],
         default='pending'
     )
+    owner_message=models.TextField(blank=True, default="")
 
     class Meta:
         ordering = ['-created_on']

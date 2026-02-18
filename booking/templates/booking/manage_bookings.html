@@ -55,6 +55,9 @@
                         {% else %}
                             <span class="badge bg-secondary">{{ booking.status|title }}</span>
                         {% endif %}
+                         {% if booking.owner_message and booking.status != "pending" %}
+        <span class="ms-2 text-muted">Owner message: {{ booking.owner_message }}</span>
+    {% endif %}
                         {% if booking.total_price %}
                             <span class="ms-2">Total: £{{ booking.total_price }}</span>
                         {% endif %}

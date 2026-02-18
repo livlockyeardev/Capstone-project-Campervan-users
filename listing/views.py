@@ -10,6 +10,7 @@ from datetime import timedelta
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from booking.models import Booking
+from django.contrib import messages
 
 
 # Create your views here.
@@ -78,6 +79,29 @@ class ListingDelete(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView)
 @login_required
 def listing_availability(request, slug):
     listing = get_object_or_404(Listing, slug=slug, author=request.user)
+
+    if request.method == "POST":
+        booking_id = request.POST.get("booking_id")
+        new_status = request.POST.get("status")
+        owner_message = (request.POST.get("owner_message") or "").strip()
+
+        booking = get_object_or_404(
+            Booking,
+            id=booking_id,
+            listing=listing,
+            status="pending",
+        )
+
+        if new_status not in {"confirmed", "cancelled"}:
+            messages.error(request, "Invalid status selected.")
+            return redirect(reverse("listing-availability", kwargs={"slug": listing.slug}))
+
+        booking.status = new_status
+        booking.owner_message = owner_message
+        booking.save(update_fields=["status", "owner_message"])
+
+        messages.success(request, "Booking updated and message saved.")
+        return redirect(reverse("listing-availability", kwargs={"slug": listing.slug}))
 
     confirmed_qs = Booking.objects.filter(listing=listing, status="confirmed").order_by("check_in")
     pending_bookings = Booking.objects.filter(listing=listing, status="pending").order_by("check_in")

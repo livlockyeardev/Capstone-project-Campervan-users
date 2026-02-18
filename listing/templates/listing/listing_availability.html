@@ -31,12 +31,29 @@
               {% for booking in pending_bookings %}
                 <div class="list-group-item">
                   <div class="fw-semibold">{{ booking.user.username }}</div>
-                  <div class="small text-muted">
-                    {{ booking.check_in }} → {{ booking.check_out }}
-                  </div>
-                  {% if booking.registration_plate %}
-                    <div class="small">Plate: {{ booking.registration_plate }}</div>
-                  {% endif %}
+                  <div class="small text-muted mb-2">{{ booking.check_in }} → {{ booking.check_out }}</div>
+
+                  <form method="post" class="d-grid gap-2">
+                    {% csrf_token %}
+                    <input type="hidden" name="booking_id" value="{{ booking.id }}">
+
+                    <select name="status" class="form-select form-select-sm" required>
+                      <option value="">Update status...</option>
+                      <option value="confirmed">Confirm</option>
+                      <option value="cancelled">Decline</option>
+                    </select>
+
+                    <textarea
+                      name="owner_message"
+                      class="form-control form-control-sm"
+                      rows="3"
+                      placeholder="Sounds good, here's my number 07768567809 to sort payment and send directions"
+                    ></textarea>
+
+                    <button type="submit" class="btn btn-sm btn-primary">
+                      Update booking
+                    </button>
+                  </form>
                 </div>
               {% endfor %}
             </div>
