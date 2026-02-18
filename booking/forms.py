@@ -7,14 +7,10 @@ from .models import Booking
 class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
-        fields = ("check_in", "check_out", "total_price")
+        fields = ("check_in", "check_out", "registration_plate")
         widgets = {
             "check_in": forms.DateInput(attrs={"type": "date"}),
             "check_out": forms.DateInput(attrs={"type": "date"}),
-            "total_price": forms.NumberInput(attrs={"readonly": "readonly"}),
-        }
-        labels = {
-            "total_price": "Total Price (£)",
         }
 
     def __init__(self, *args, **kwargs):

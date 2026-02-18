@@ -1,13 +1,22 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block content %}
 <div class="container mt-4">
-  <h1>Make a Booking</h1>
+  <h1>Make a Booking for {{ listing.title }}</h1>
+  <p class="text-muted mb-3">{{ listing.location }}</p>
+
   <form id="create-booking-form" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form|crispy }}
+
+     <p class="mt-2 mb-3">
+      Price Per Night: <strong><span id="price-per-night">£{{ listing.price_per_night }}</span></strong>  Estimated total: <strong>£<span id="booking-total-preview">0.00</span></strong>
+    </p>
+
     <button type="submit" class="btn">Create Booking</button>
   </form>
 </div>
+<script src="{% static 'js/create_booking.js' %}"></script>
 {% endblock content %}
