@@ -83,7 +83,7 @@ body, button, input, textarea, select, .btn, .nav-link, .card, .modal {
 /* Main Content */
 main {
     background-color: var(--white);
-    min-height: calc(100vh - 200px);
+    flex: 1 0 auto;
 }
 
 .main-bg {
@@ -472,6 +472,53 @@ p {
 
 .mb-4 {
     margin-bottom: 1.5rem !important;
+}
+
+/* Booking request confirmation badge */
+
+.confirmed {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.2rem;
+    height: 1.2rem;
+    padding: 0 0.3rem;
+    border-radius: 25px;
+    background: #bbebc6;
+    color: #000000;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.pending {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.2rem;
+    height: 1.2rem;
+    padding: 0 0.3rem;
+    border-radius: 25px;
+    background: #ffc107;
+    color: #212529;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.cancelled {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.2rem;
+    height: 1.2rem;
+    padding: 0 0.3rem;
+    border-radius: 25px;
+    background: #f98691;
+    color: #000000;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1;
 }
 
 /* in-app notifications for bookings */
