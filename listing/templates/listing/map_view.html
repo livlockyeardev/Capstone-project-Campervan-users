@@ -43,7 +43,12 @@
       if (Number.isFinite(lat) && Number.isFinite(lng)) {
         const marker = L.marker([lat, lng]).addTo(map);
         marker.bindPopup(
-          `<strong>${listing.title}</strong><br>${listing.location}<br><a href="/${listing.slug}/">View listing</a>`
+          `<a href="/${listing.slug}/" target="_blank">
+            <img src="${listing.featured_image_url}" alt="${listing.title}" style="width:100%;max-width:160px;max-height:100px;object-fit:cover;border-radius:6px;margin-bottom:6px;">
+          </a><br>
+          <a href="/${listing.slug}/" target="_blank"><strong>${listing.title}</strong></a><br>
+          ${listing.location}
+          <span style="display:inline-block;margin-left:8px;" class="badge bg-danger">£${listing.price_per_night} / night</span>`
         );
         bounds.push([lat, lng]);
       }

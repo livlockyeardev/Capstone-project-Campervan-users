@@ -126,15 +126,23 @@ def listing_availability(request, slug):
         },
     )
 
+
 class ListingMapView(generic.TemplateView):
     template_name = "listing/map_view.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["map_listings"] = list(
-            Listing.objects
-            .exclude(latitude__isnull=True)
-            .exclude(longitude__isnull=True)
-            .values("title", "slug", "latitude", "longitude", "location")
-        )
+        listings = Listing.objects.exclude(latitude__isnull=True).exclude(longitude__isnull=True)
+        context["map_listings"] = [
+            {
+                "title": listing.title,
+                "slug": listing.slug,
+                "latitude": listing.latitude,
+                "longitude": listing.longitude,
+                "location": listing.location,
+                "price_per_night": listing.price_per_night,
+                "featured_image_url": listing.featured_image.url if listing.featured_image else "/static/images/default.jpg",
+            }
+            for listing in listings
+        ]
         return context
