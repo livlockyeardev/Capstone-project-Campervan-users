@@ -1,20 +1,22 @@
 {% extends "base.html" %} 
-{% load static %}
+{% load static %} 
 {% block content %}
 <!-- index.html content starts here -->
- <!-- Hero Section -->
+<!-- Hero Section -->
 <section class="hero">
   <div class="hero__media" aria-hidden="true">
-    <img 
-      class="hero__image" 
-      src="{% static 'images/hero.png' %}" 
+    <img
+      class="hero__image"
+      src="{% static 'images/hero.png' %}"
       alt="Hero banner - vintage campervan"
     />
     <div class="hero__overlay"></div>
   </div>
   <div class="hero__content container">
     <h1 class="hero__title">Find your groove.</h1>
-    <p class="hero__subtitle">Discover unique parkup spots for your retro wheels</p>
+    <p class="hero__subtitle">
+      Discover unique parkup spots for your retro wheels
+    </p>
   </div>
 </section>
 <div class="container-fluid">
@@ -23,32 +25,57 @@
     <div class="col-12 mt-3 left">
       <div class="row">
         {% for listing in listing_list %}
-        <div class="col-12 col-sm-6 col-md-3 col-lg-2-4">
-          <div class="card mb-4">
-            <div class="image-container position-relative">
-              {% if "placeholder" in listing.featured_image.url %}
-              <img
-                class="card-img-top"
-                src="{% static 'images/default.jpg' %}"
-                alt="placeholder image"
-              />
-              {% else %}
-              <img
-                class="card-img-top"
-                src=" {{ listing.featured_image.url }}"
-                alt="{{ listing.title }}"
-              />
-              {% endif %}
-              
-              <!-- Price Badge -->
-              {% if listing.price %}
-              <span class="badge bg-danger position-absolute top-0 end-0 m-2" style="font-size: 0.9rem;">£{{ listing.price }}</span>
-              {% endif %}
-              
-              <!-- Toilet Icon -->
-              {% if listing.toilet_available %}
-              <span class="position-absolute bottom-0 start-0 m-2" style="font-size: 1.5rem;" title="Toilet Available">🚰</span>
-              {% endif %}
+        <div class="mb-4 col-12 col-sm-6 col-md-3 col-lg-2-4 d-flex">
+          <div class="card h-100 w-100 listing-card">
+            <div class="image-container position-relative listing-image-wrap">
+              <a href="{% url 'listing-detail' listing.slug %}" class="listing-image-link" aria-label="View {{ listing.title }}">
+                {% if "placeholder" in listing.featured_image.url %}
+                <img
+                  class="card-img-top listing-image"
+                  src="{% static 'images/default.jpg' %}"
+                  alt="{{ listing.title }}"
+                />
+                {% else %}
+                <img
+                  class="card-img-top listing-image"
+                  src="{{ listing.featured_image.url }}"
+                  alt="{{ listing.title }}"
+                />
+                {% endif %}
+              </a>
+
+              <!-- Top-right stacked badges -->
+              <div
+                class="position-absolute top-0 end-0 m-2 d-flex flex-column gap-1 align-items-end"
+              >
+                {% if listing.price_per_night %}
+                <span class="badge listing-corner-badge"
+                  >£{{ listing.price_per_night }}</span
+                >
+                {% endif %} {% if listing.toilet_available %}
+                <span
+                  class="badge bg-light listing-corner-badge"
+                  title="Toilet Available"
+                >
+                  <img
+                    src="{% static 'images/toilet.png' %}"
+                    alt="Toilet Available"
+                    class="listing-toilet-icon"
+                  />
+                </span>
+                {% endif %} {% if listing.noise_level == 0 %}
+                <span
+                  class="badge bg-light listing-corner-badge"
+                  title="Quiet"
+                >
+                  <img
+                    src="{% static 'images/quiet.png' %}"
+                    alt="Quiet"
+                    class="listing-toilet-icon"
+                  />
+                </span>
+                {% endif %}
+              </div>
             </div>
             <div class="card-body">
               <a
