@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""
+/>
+
+<style>
+  #listing-map {
+    height: calc(100vh - 80px);
+    width: 100%;
+  }
+</style>
+
+<div id="listing-map"></div>
+
+{{ map_listings|json_script:"map-listings-data" }}
+
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""
+></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const data = JSON.parse(document.getElementById("map-listings-data").textContent);
+
+    const map = L.map("listing-map");
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: "&copy; OpenStreetMap contributors",
+    }).addTo(map);
+
+    const bounds = [];
+
+    data.forEach((listing) => {
+      const lat = Number(listing.latitude);
+      const lng = Number(listing.longitude);
+      if (Number.isFinite(lat) && Number.isFinite(lng)) {
+        const marker = L.marker([lat, lng]).addTo(map);
+        marker.bindPopup(
+          `<strong>${listing.title}</strong><br>${listing.location}<br><a href="/${listing.slug}/">View listing</a>`
+        );
+        bounds.push([lat, lng]);
+      }
+    });
+
+    if (bounds.length) {
+      map.fitBounds(bounds, { padding: [40, 40] });
+    } else {
+      map.setView([54.5, -3], 6); // UK fallback
+    }
+  });
+</script>
+{% endblock %}

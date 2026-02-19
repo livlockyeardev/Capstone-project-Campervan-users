@@ -125,3 +125,16 @@ def listing_availability(request, slug):
             "pending_bookings": pending_bookings,
         },
     )
+
+class ListingMapView(generic.TemplateView):
+    template_name = "listing/map_view.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["map_listings"] = list(
+            Listing.objects
+            .exclude(latitude__isnull=True)
+            .exclude(longitude__isnull=True)
+            .values("title", "slug", "latitude", "longitude", "location")
+        )
+        return context
