@@ -1,10 +1,12 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404
-from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView
 from .models import Booking
 from .forms import BookingForm
 from listing.models import Listing
+from django.contrib.auth.decorators import login_required
+from datetime import datetime
 
 
 class CreateBooking(LoginRequiredMixin, CreateView):
@@ -79,3 +81,26 @@ class ManageBookings(LoginRequiredMixin, ListView):
             .filter(user=self.request.user)
             .order_by("-created_on")
         )
+    
+
+@login_required
+def block_off_availability(request, slug):
+    listing = get_object_or_404(Listing, slug=slug, author=request.user)
+    if request.method == "POST":
+        start_date = request.POST.get("start_date")
+        end_date = request.POST.get("end_date")
+        if start_date and end_date:
+            try:
+                check_in = datetime.strptime(start_date, "%Y-%m-%d").date()
+                check_out = datetime.strptime(end_date, "%Y-%m-%d").date()
+                Booking.objects.create(
+                    listing=listing,
+                    user=request.user,
+                    check_in=check_in,
+                    check_out=check_out,
+                    status="confirmed",  # or "blocked" if you want a custom status
+                    registration_plate="",
+                )
+            except Exception:
+                pass  # Optionally add error handling/messages
+    return redirect(reverse("listing-availability", kwargs={"slug": listing.slug}))

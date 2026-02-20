@@ -12,7 +12,7 @@
       </div>
 
       <!-- Featured Image -->
-      <div class="mb-4">
+      <div class="mb-4 listing-image-container">
         {% if "placeholder" in listing.featured_image.url %}
         <img
           class="img-fluid rounded"
@@ -57,7 +57,7 @@
       </div>
 
       <!-- Action Buttons -->
-      <div class="d-flex gap-2">
+      <div class="d-flex gap-2 mb-4">
         <a href="{% url 'home' %}" class="btn">
           Back to Listings
         </a>

@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
@@ -8,9 +7,10 @@ from django.db.models import Count, Q
 from django.views.generic import ListView
 from datetime import timedelta
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render, redirect
 from booking.models import Booking
 from django.contrib import messages
+from django.utils.html import escape
 
 
 # Create your views here.
@@ -106,15 +106,18 @@ def listing_availability(request, slug):
     confirmed_qs = Booking.objects.filter(listing=listing, status="confirmed").order_by("check_in")
     pending_bookings = Booking.objects.filter(listing=listing, status="pending").order_by("check_in")
 
-    confirmed_events = [
-        {
-            "title": "Booked",
-            "start": b.check_in.isoformat(),
-            "end": (b.check_out + timedelta(days=1)).isoformat(),  # FullCalendar end is exclusive
+    confirmed_events = []
+    for booking in confirmed_qs:
+        is_owner = booking.user == listing.author
+        confirmed_events.append({
+            "title": "Blocked out" if is_owner else f"Booking: User {escape(booking.user.username)}",
+            "start": booking.check_in.isoformat(),
+            "end": (booking.check_out + timedelta(days=1)).isoformat(),
             "allDay": True,
-        }
-        for b in confirmed_qs
-    ]
+            "color": "#d4edda" if not is_owner else "#e9ecef",  # pale green or pale grey
+            "textColor": "#155724" if not is_owner else "#495057",
+            "height": "4rem",
+        })
 
     return render(
         request,
