@@ -1,84 +1,119 @@
-{% extends "base.html" %}
-{% load static %}
-
+{% extends "base.html" %} 
+{% load static %} 
 {% block content %}
 <div class="container mt-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>Manage My Bookings</h1>
-    </div>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Manage My Bookings</h1>
+  </div>
 
-    {% if bookings %}
-        <div class="list-group">
-            {% for booking in bookings %}
-            <div class="list-group-item d-flex align-items-center gap-3 py-3">
-                <!-- Left: Listing Image -->
-                <div class="flex-shrink-0">
-                    {% if booking.listing.featured_image and "placeholder" in booking.listing.featured_image.url %}
-                    <img
-                        src="{% static 'images/default.jpg' %}"
-                        alt="{{ booking.listing.title }}"
-                        class="rounded"
-                        style="width: 80px; height: 80px; object-fit: cover;"
-                    />
-                    {% elif booking.listing.featured_image %}
-                    <img
-                        src="{{ booking.listing.featured_image.url }}"
-                        alt="{{ booking.listing.title }}"
-                        class="rounded"
-                        style="width: 80px; height: 80px; object-fit: cover;"
-                    />
-                    {% else %}
-                    <img
-                        src="{% static 'images/default.jpg' %}"
-                        alt="{{ booking.listing.title }}"
-                        class="rounded"
-                        style="width: 80px; height: 80px; object-fit: cover;"
-                    />
-                    {% endif %}
-                </div>
+  {% if bookings %}
+  <div class="list-group">
+    {% for booking in bookings %} 
+    {% if booking.user == request.user %}
+    <div class="list-group-item d-flex align-items-center gap-3 py-3">
+      <!-- Left: Listing Image -->
+      <div class="flex-shrink-0">
+        {% if booking.listing.featured_image and "placeholder" in booking.listing.featured_image.url %}
+        <img
+          src="{% static 'images/default.jpg' %}"
+          alt="{{ booking.listing.title }}"
+          class="rounded"
+          style="width: 80px; height: 80px; object-fit: cover"
+        />
+        {% elif booking.listing.featured_image %}
+        <img
+          src="{{ booking.listing.featured_image.url }}"
+          alt="{{ booking.listing.title }}"
+          class="rounded"
+          style="width: 80px; height: 80px; object-fit: cover"
+        />
+        {% else %}
+        <img
+          src="{% static 'images/default.jpg' %}"
+          alt="{{ booking.listing.title }}"
+          class="rounded"
+          style="width: 80px; height: 80px; object-fit: cover"
+        />
+        {% endif %}
+      </div>
 
-                <!-- Center: Booking Details -->
-                <div class="flex-grow-1">
-                    <h5 class="mb-1">{{ booking.listing.title }}</h5>
-                    <p class="text-muted small mb-1">{{ booking.listing.location }}</p>
-                    <p class="mb-1">
-                        <strong>{{ booking.check_in }}</strong> → <strong>{{ booking.check_out }}</strong>
-                    </p>
-                    <p class="mb-0 small">
-                        Status:
-                        {% if booking.status == "confirmed" %}
-                            <span class="badge confirmed">Confirmed</span>
-                        {% elif booking.status == "pending" %}
-                            <span class="badge pending text-dark">Pending</span>
-                        {% elif booking.status == "cancelled" %}
-                            <span class="badge cancelled">Cancelled</span>
-                        {% else %}
-                            <span class="badge bg-secondary">{{ booking.status|title }}</span>
-                        {% endif %}
-                         {% if booking.owner_message and booking.status != "pending" %}
-        <span class="ms-2 text-muted">Owner message: {{ booking.owner_message }}</span>
-    {% endif %}
-                        {% if booking.total_price %}
-                            <span class="ms-2">Total: £{{ booking.total_price }}</span>
-                        {% endif %}
-                    </p>
-                </div>
+      <!-- Center: Booking Details -->
+      <div class="flex-grow-1">
+        <h5 class="mb-1">{{ booking.listing.title }}</h5>
+        <p class="text-muted small mb-1">{{ booking.listing.location }}</p>
+        <p class="mb-1">
+          <strong>{{ booking.check_in }}</strong> →
+          <strong>{{ booking.check_out }}</strong>
+        </p>
+        <p class="mb-0 small">
+          Status: {% if booking.status == "confirmed" %}
+          <span class="badge confirmed">Confirmed</span>
+          {% elif booking.status == "pending" %}
+          <span class="badge pending text-dark">Pending</span>
+          {% elif booking.status == "cancelled" %}
+          <span class="badge cancelled">Cancelled</span>
+          {% else %}
+          <span class="badge bg-secondary">{{ booking.status|title }}</span>
+          {% endif %} 
+          {% if booking.owner_message and booking.status != "pending" %}
+          <span class="ms-2 text-muted"
+            >Owner message: {{ booking.owner_message }}</span
+          >
+          {% endif %} 
+          {% if booking.total_price %}
+          <span class="ms-2">Total: £{{ booking.total_price }}</span>
+          {% endif %}
+        </p>
+      </div>
 
-                <!-- Right: Action -->
-                <div class="d-flex gap-2 flex-shrink-0">
-                    <a href="{% url 'listing-detail' booking.listing.slug %}"
-                       class="btn btn-sm"
-                       title="View listing">
-                        <i class="fas fa-eye"></i>
-                    </a>
-                </div>
+      <!-- Right: Action -->
+      <div class="d-flex gap-2 flex-shrink-0">
+        <a
+          href="{% url 'listing-detail' booking.listing.slug %}"
+          class="btn btn-sm"
+          title="View listing"
+        >
+          <i class="fas fa-eye"></i>
+        </a>
+        <!-- Cancel Button triggers modal -->
+        <button type="button" class="btn btn-sm btn-danger" title="Cancel booking" data-bs-toggle="modal" data-bs-target="#cancelModal-{{ booking.id }}">
+          <i class="fas fa-times"></i>
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="cancelModal-{{ booking.id }}" tabindex="-1" aria-labelledby="cancelModalLabel-{{ booking.id }}" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="cancelModalLabel-{{ booking.id }}">Cancel Booking</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              {% if booking.status == "cancelled" %}
+              <div class="modal-body">
+                This booking has already been cancelled. To rebook, please visit the listing page and make a new booking.
+              </div>
+              {% else %}
+              <div class="modal-body">
+                Are you sure you want to cancel this booking?
+              </div>
+              {% endif %}
+              <div class="modal-footer">
+                <form method="post" action="{% url 'cancel-booking' booking.id %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger">Okay</button>
+                </form>
+              </div>
             </div>
-            {% endfor %}
+          </div>
         </div>
-    {% else %}
-        <div class="alert alert-info" role="alert">
-            <p class="mb-2">You haven't made any bookings yet.</p>
-        </div>
-    {% endif %}
+      </div>
+    </div>
+    {% endif %} 
+  {% endfor %}
+  </div>
+  {% else %}
+  <div class="alert alert-info" role="alert">
+    <p class="mb-2">You haven't made any bookings yet.</p>
+  </div>
+  {% endif %}
 </div>
 {% endblock content %}

@@ -1,6 +1,6 @@
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from .models import Listing
 from .forms import ListingForm
 from django.db.models import Count, Q
@@ -89,12 +89,8 @@ def listing_availability(request, slug):
             Booking,
             id=booking_id,
             listing=listing,
-            status="pending",
+            status__in=["pending", "confirmed"],
         )
-
-        if new_status not in {"confirmed", "cancelled"}:
-            messages.error(request, "Invalid status selected.")
-            return redirect(reverse("listing-availability", kwargs={"slug": listing.slug}))
 
         booking.status = new_status
         booking.owner_message = owner_message
@@ -105,6 +101,7 @@ def listing_availability(request, slug):
 
     confirmed_qs = Booking.objects.filter(listing=listing, status="confirmed").order_by("check_in")
     pending_bookings = Booking.objects.filter(listing=listing, status="pending").order_by("check_in")
+    cancelled_bookings = Booking.objects.filter(listing=listing, status="cancelled").order_by("-created_on")
 
     confirmed_events = []
     for booking in confirmed_qs:
@@ -126,6 +123,8 @@ def listing_availability(request, slug):
             "listing": listing,
             "confirmed_events": confirmed_events,
             "pending_bookings": pending_bookings,
+            "confirmed_qs": confirmed_qs,
+            "cancelled_bookings": cancelled_bookings,
         },
     )
 

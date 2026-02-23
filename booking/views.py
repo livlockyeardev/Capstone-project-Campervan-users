@@ -39,6 +39,19 @@ class CreateBooking(LoginRequiredMixin, CreateView):
                     f"This listing allows a maximum stay of {max_nights} night(s).",
                 )
 
+            # Overlapping booking check
+            overlapping = Booking.objects.filter(
+                listing=self.listing,
+                status__in=["confirmed"],
+                check_in__lt=check_out,
+                check_out__gt=check_in,
+            )
+            if overlapping.exists():
+                form.add_error(
+                    "check_in",
+                    "These dates overlap with an existing booking. Please choose different dates.",
+                )
+
             if form.errors:
                 return self.form_invalid(form)
 
@@ -104,3 +117,13 @@ def block_off_availability(request, slug):
             except Exception:
                 pass  # Optionally add error handling/messages
     return redirect(reverse("listing-availability", kwargs={"slug": listing.slug}))
+
+
+class CancelBooking(LoginRequiredMixin, DetailView):
+    model = Booking
+
+    def post(self, request, *args, **kwargs):
+        booking = self.get_object()
+        booking.status = "cancelled"
+        booking.save()
+        return redirect("manage-bookings")
