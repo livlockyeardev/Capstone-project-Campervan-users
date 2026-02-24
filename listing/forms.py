@@ -30,6 +30,9 @@ class ListingForm(forms.ModelForm):
             "max_nights": "Maximum Nights",
             "price_per_night": "Price Per Night (We suggest keeping a price under £5 if no facilities are available and under £10 if there are.)",
         }
+        widgets = {
+            "description": forms.Textarea(attrs={"rows": 5}),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

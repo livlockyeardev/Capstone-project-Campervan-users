@@ -26,6 +26,7 @@ button,
 input,
 textarea,
 select,
+footer,
 .btn,
 .nav-link,
 .card,
@@ -283,7 +284,7 @@ h6,
 .floating-map-btn {
   position: fixed;
   left: 50%;
-  bottom: 20px;
+  bottom: 150px; /* Increased from 20px to 90px to sit above footer */
   transform: translateX(-50%);
   z-index: 1050;
   background: rgba(255, 255, 255, 0.85);
@@ -344,7 +345,8 @@ form label {
 /* Create Listing Form */
 
 #create-listing-form {
-  width: 80vw; /* 10% of screen width on left/right */
+  width: 80vw; 
+  margin: auto;
 }
 
 /* Small devices*/

@@ -117,15 +117,29 @@
 
     <!-- Footer -->
     <footer class="footer mt-auto py-3 dark-bg">
-      <p class="m-0 text-center">
-        {% block copyright %} Made by Olivia Lockyear{% endblock copyright %}
-      </p>
-      <p class="m-0 text-center">
-        Follow us: <i class="fab fa-facebook-square ms-3"></i>
-        <i class="fab fa-twitter-square ms-3"></i>
-        <i class="fab fa-instagram-square ms-3"></i>
-        <i class="fab fa-youtube-square ms-3"></i>
-      </p>
+      <div class="container d-flex flex-row align-items-center justify-content-between" style="gap: 1rem;">
+        <div class="flex-fill text-start">
+          <p class="m-0">
+            <div style="line-height:1.2;">
+              <span style="font-weight:600;">Made by Olivia Lockyear</span><br>
+              <span style="font-size:0.95em; color:var(--text-light);">with the Code Institute</span>
+            </div>
+          </p>
+        </div>
+        <div class="flex-fill text-center">
+          <a href="#top" class="text-decoration-none" style="outline:none;">
+            <span class="brand text-center" style="font-family: Poppins, Inter, sans-serif; color:var(--primary-pink); font-size:2.2rem; font-weight:700; letter-spacing:-0.5px; line-height:1;">DriveAway</span>
+          </a>
+        </div>
+        <div class="flex-fill text-end">
+          <span class="me-2" style="font-weight:500;">Follow us:</span>
+          <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-square ms-2" style="font-size:1.5rem;"></i></a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram-square ms-2" style="font-size:1.5rem;"></i></a>
+          <a href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube-square ms-2" style="font-size:1.5rem;"></i></a>
+        </div>
+      </div>
+    <!-- Anchor for scroll-to-top -->
+    <a id="top"></a>
     </footer>
 
     <script
