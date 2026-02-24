@@ -196,9 +196,6 @@ h5,
 h6,
 .card-title {
   font-family: "Poppins", "Inter", sans-serif;
-  white-space: nowrap;
-  overflow: hidden;
-
 }
 
 .card:hover {
@@ -212,7 +209,7 @@ h6,
 .card-title {
   color: var(--text-dark);
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 16px;
 }
 
 .listing-corner-badge {
