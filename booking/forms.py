@@ -19,9 +19,17 @@ class BookingForm(forms.ModelForm):
         self.helper.add_input(Submit("submit", "Book"))
 
     def clean(self):
+        from datetime import date
         cleaned_data = super().clean()
         check_in = cleaned_data.get("check_in")
         check_out = cleaned_data.get("check_out")
+        today = date.today()
+        if check_in:
+            if check_in < today:
+                self.add_error("check_in", "Check-in date cannot be in the past.")
+        if check_out:
+            if check_out < today:
+                self.add_error("check_out", "Check-out date cannot be in the past.")
         if check_in and check_out and check_out <= check_in:
             self.add_error("check_out", "Check-out must be after check-in.")
         return cleaned_data
