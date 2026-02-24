@@ -16,7 +16,12 @@
   }
 </style>
 
+
 <div id="listing-map"></div>
+
+<a href="{% url 'home' %}" class="floating-map-btn">
+  <i class="fas fa-th-list me-2"></i> List View
+</a>
 
 {{ map_listings|json_script:"map-listings-data" }}
 
