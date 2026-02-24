@@ -284,7 +284,7 @@ h6,
 .floating-map-btn {
   position: fixed;
   left: 50%;
-  bottom: 150px; /* Increased from 20px to 90px to sit above footer */
+  bottom: 90px; /* Increased from 20px to 90px to sit above footer */
   transform: translateX(-50%);
   z-index: 1050;
   background: rgba(255, 255, 255, 0.85);
