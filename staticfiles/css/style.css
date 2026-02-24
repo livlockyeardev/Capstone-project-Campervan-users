@@ -196,6 +196,9 @@ h5,
 h6,
 .card-title {
   font-family: "Poppins", "Inter", sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+
 }
 
 .card:hover {
