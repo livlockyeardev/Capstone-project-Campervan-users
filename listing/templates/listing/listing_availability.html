@@ -90,6 +90,7 @@
                 {% if booking.user == listing.author %}
                   <div class="d-flex align-items-center gap-2">
                     <span class="fw-semibold">Blocked Off</span>
+                    <span class="small text-muted"> {{ booking.check_in }} → {{ booking.check_out }}</span>
                     <span>
                       <form method="post" style="display:inline;">
                         {% csrf_token %}
