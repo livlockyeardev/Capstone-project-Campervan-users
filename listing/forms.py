@@ -5,6 +5,20 @@ from .models import Listing
 
 
 class ListingForm(forms.ModelForm):
+    def clean(self):
+        cleaned_data = super().clean()
+        min_nights = cleaned_data.get('min_nights')
+        max_nights = cleaned_data.get('max_nights')
+        price = cleaned_data.get('price_per_night')
+        if min_nights is not None and max_nights is not None:
+            if min_nights <= 0 or max_nights <= 0:
+                raise forms.ValidationError('Minimum and maximum nights must both be greater than 0.')
+            if min_nights >= max_nights:
+                raise forms.ValidationError('Minimum nights must be less than maximum nights.')
+        if price is not None and price < 0:
+            raise forms.ValidationError('Price cannot be negative.')
+        return cleaned_data
+
     class Meta:
         model = Listing
         fields = (
