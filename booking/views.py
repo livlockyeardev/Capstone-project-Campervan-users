@@ -65,6 +65,20 @@ class CreateBooking(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["listing"] = self.listing
+        # Build confirmed_events for calendar
+        from datetime import timedelta
+        confirmed_qs = Booking.objects.filter(listing=self.listing, status="confirmed").order_by("check_in")
+        confirmed_events = []
+        for booking in confirmed_qs:
+            confirmed_events.append({
+                "title": "Booked",
+                "start": booking.check_in.isoformat(),
+                "end": (booking.check_out + timedelta(days=1)).isoformat(),
+                "allDay": True,
+                "color": "#d4edda",
+                "textColor": "#155724",
+            })
+        context["confirmed_events"] = confirmed_events
         return context
 
 
