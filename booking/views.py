@@ -7,6 +7,7 @@ from .forms import BookingForm
 from listing.models import Listing
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
+from django.contrib import messages
 
 
 class CreateBooking(LoginRequiredMixin, CreateView):
@@ -53,10 +54,12 @@ class CreateBooking(LoginRequiredMixin, CreateView):
                 )
 
             if form.errors:
+                messages.error(self.request, "Booking could not be created. Please fix the errors and try again.")
                 return self.form_invalid(form)
 
         form.instance.user = self.request.user
         form.instance.listing = self.listing
+        messages.success(self.request, "Booking created successfully.")
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -120,6 +123,9 @@ def block_off_availability(request, slug):
             try:
                 check_in = datetime.strptime(start_date, "%Y-%m-%d").date()
                 check_out = datetime.strptime(end_date, "%Y-%m-%d").date()
+                if check_in >= check_out:
+                    messages.error(request, "Start date must be before end date.")
+                    return redirect(reverse("listing-availability", kwargs={"slug": listing.slug}))
                 Booking.objects.create(
                     listing=listing,
                     user=request.user,
@@ -129,7 +135,8 @@ def block_off_availability(request, slug):
                     registration_plate="",
                 )
             except Exception:
-                pass  # Optionally add error handling/messages
+                messages.error(request, "Invalid date format.")
+                return redirect(reverse("listing-availability", kwargs={"slug": listing.slug}))
     return redirect(reverse("listing-availability", kwargs={"slug": listing.slug}))
 
 
@@ -140,4 +147,5 @@ class CancelBooking(LoginRequiredMixin, DetailView):
         booking = self.get_object()
         booking.status = "cancelled"
         booking.save()
+        messages.success(request, "Booking cancelled successfully.")
         return redirect("manage-bookings")

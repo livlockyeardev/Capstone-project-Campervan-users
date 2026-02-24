@@ -33,7 +33,9 @@ class ListingCreate(LoginRequiredMixin, generic.CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        messages.success(self.request, "Listing created successfully.")
+        return response
    
 
 class ManageListings(LoginRequiredMixin, ListView):
@@ -61,6 +63,11 @@ class ListingUpdate(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView)
     template_name = "listing/edit_listing.html"
     success_url = reverse_lazy("manage-listings")
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Listing updated successfully.")
+        return response
+
     def test_func(self):
         listing = self.get_object()
         return self.request.user == listing.author
@@ -70,6 +77,10 @@ class ListingDelete(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView)
     model = Listing
     template_name = "listing/delete_listing.html"
     success_url = reverse_lazy("manage-listings")
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(request, "Listing deleted successfully.")
+        return super().delete(request, *args, **kwargs)
 
     def test_func(self):
         listing = self.get_object()
@@ -92,11 +103,20 @@ def listing_availability(request, slug):
             status__in=["pending", "confirmed"],
         )
 
+        old_status = booking.status
         booking.status = new_status
         booking.owner_message = owner_message
         booking.save(update_fields=["status", "owner_message"])
 
-        messages.success(request, "Booking updated and message saved.")
+        if old_status != new_status:
+            if new_status == "confirmed":
+                messages.success(request, "Booking confirmed.")
+            elif new_status == "cancelled":
+                messages.success(request, "Booking cancelled.")
+            else:
+                messages.success(request, "Booking status updated.")
+        else:
+            messages.success(request, "Booking note updated.")
         return redirect(reverse("listing-availability", kwargs={"slug": listing.slug}))
 
     confirmed_qs = Booking.objects.filter(listing=listing, status="confirmed").order_by("check_in")

@@ -25,5 +25,3 @@ class BookingForm(forms.ModelForm):
         if check_in and check_out and check_out <= check_in:
             self.add_error("check_out", "Check-out must be after check-in.")
         return cleaned_data
-
-# Note: user, listing, and status should be set in the view before saving.

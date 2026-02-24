@@ -629,3 +629,22 @@ p {
   max-height: 20px;
   display: block;
 }
+
+/* manage booking page styles */
+
+  .booking-link-img {
+    transition: transform 0.2s;
+    display: inline-block;
+  }
+  .booking-link-img:hover {
+    transform: scale(1.06);
+    z-index: 2;
+  }
+  .booking-link-title {
+    transition: color 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .booking-link-title:hover {
+    color: #007bff;
+    transform: scale(1.04);
+  }

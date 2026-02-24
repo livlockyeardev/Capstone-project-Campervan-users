@@ -46,6 +46,16 @@
         <a class="navbar-brand" href="{{ home_url }}">
           <span class="brand">DriveAway</span>
         </a>
+
+          {% if messages %}
+          <div style="position:relative;">
+           {% for message in messages %}
+          <div class="alert text-center" role="alert" style="font-size:1.1rem;">
+            {{ message }}
+          </div>
+        {% endfor %}
+    </div>
+    {% endif %}
         
         <div class="d-flex align-items-center">
           {% if user.is_authenticated %}
