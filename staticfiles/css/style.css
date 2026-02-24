@@ -344,14 +344,13 @@ form label {
 /* Create Listing Form */
 
 #create-listing-form {
-  width: 100%;
-  margin: 0 10vw; /* 10% of screen width on left/right */
+  width: 80vw; /* 10% of screen width on left/right */
 }
 
-/* Small devices: remove the 10vw gap */
+/* Small devices*/
 @media (max-width: 576px) {
   #create-listing-form {
-    margin: 0 1rem;
+    width: 100%;
   }
 }
 
@@ -629,3 +628,22 @@ p {
   max-height: 20px;
   display: block;
 }
+
+/* manage booking page styles */
+
+  .booking-link-img {
+    transition: transform 0.2s;
+    display: inline-block;
+  }
+  .booking-link-img:hover {
+    transform: scale(1.06);
+    z-index: 2;
+  }
+  .booking-link-title {
+    transition: color 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .booking-link-title:hover {
+    color: #007bff;
+    transform: scale(1.04);
+  }
