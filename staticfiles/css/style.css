@@ -117,7 +117,8 @@ main {
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .hero {
-    max-height: 420px;
+    max-height: 280px;
+    min-height: 0;
   }
 }
 
@@ -125,6 +126,7 @@ main {
 .hero__media {
   position: absolute;
   inset: 0;
+  max-height: 50vh;
   z-index: 0;
 }
 
