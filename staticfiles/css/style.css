@@ -115,6 +115,13 @@ main {
   isolation: isolate;
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+  .hero {
+    max-height: 420px;
+  }
+}
+
+
 .hero__media {
   position: absolute;
   inset: 0;
