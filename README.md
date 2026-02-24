@@ -3,11 +3,11 @@
 
 This application allows people to list their private driveways for campervan users looking for cheaper, more relaxed alternatives to traditional campsites. In the scope of the project, I have designed a view page for all listings either in card format or displayed on a map, a booking system and a minimal messaging system. This allows driveway owners to accept or decline bookings and communicate with campervan owners to organise payment and provide further contact details outside of the application. This application does not take payment for the reserved stays. 
 
-## Designing User Stories
+## Designing User Stories and Giving Priority  
 
 I based my user stories both from the view of a driveway owner and a campervan user:
 
-1. **Login Page/Authentication**
+1. **Login Page/Authentication**  
 As a user I can create an account so that I can browse listings as a traveller or upload a new listing as an owner.
  -[] Initial Login Page shows when website first appears
  -[] User is prompted for details:
@@ -15,9 +15,9 @@ As a user I can create an account so that I can browse listings as a traveller o
      An email
      A Password
 
-2. **Traveller List View**
+2. **Traveller List View**  
 As a traveller, I want to switch to a list view so that I can compare driveways by price, facilities, and reviews.
--[] User can toggle between Map View and List View.
+-[ ] User can toggle between Map View and List View.
 -[] List view displays driveway cards with:
   -Thumbnail image
   -Price
@@ -52,7 +52,7 @@ As a traveller, I want to book a stay directly through the app so that I can sec
 -[] User receives booking confirmation via in‑app notification and email.
 -[] Driveway owner receives booking request/confirmation.
 
-6. **Map View**
+6. **Map View**  
 As a traveller, I want to browse driveways on a map so that I can quickly find suitable places near my route.
 -[] Map view displays all available driveway listings as pins.
 -[] Pins show price and availability on hover/tap.
@@ -60,20 +60,45 @@ As a traveller, I want to browse driveways on a map so that I can quickly find s
 -[] Filters (price, facilities, noise level, dates) update the map results in real time.
 -[] Selecting a pin opens the listing preview card.
 
-7. **Traveller Review Visibility**
+7. **Traveller Review Visibility**  
 As a traveller, I want to see reviews on each driveway’s main page so that I can judge whether the spot is trustworthy and comfortable.
 -[] Listing page displays average rating and total number of reviews.
 -[] Reviews section shows: reviewer name, date, rating, and written feedback.
 -[] Reviews are sorted by most recent by default.
 -[] If no reviews exist, a placeholder message is shown.
 
-8. **Traveller Review Submission**
+8. **Traveller Review Submission**  
 As a traveller, I want to leave a review after my stay so that I can share my experience.
 -[] User can only review a stay after the checkout date.
 -[] Review form includes star rating and optional written feedback.
 -[] Submitted reviews appear on the listing page after moderation rules (if any).
 -[] User cannot submit multiple reviews for the same stay.
 
+I then arranged these in a Kanban project board, giving each story a level of priority from could have to must have. This gave me room to adjust the scope of my project as time continued to ensure a Minimum Viable Product, or MVP, was delivered.
+
+![Kanban project board with my user stories listed with priority given](static/images/kanban.png)
+
 ## Wireframing for User Stories
 
 ![Figma WireFrame of Project](static/images/DriveAway.png)
+
+## The Design Process
+
+I took inspiration from sites such as AirBnB, using modern sleek fonts and minimal colour. I drafted an idea for my design using Replit with AI prompts to match my design ideas.
+
+![Replit initial design idea based off AirBnB](static/images/replit.png)
+
+This led me to settle on the following colour scheme: 
+
+![Colour Palette Selection](static/images/Copilot_20260224_180202.png)
+
+And the following minimal font as a logo and as my main header text:
+
+![Font Selection](static/images/font.png)
+
+Next I needed to design the database structure, how my data would be held and which data types would be keys to link to other tables of data. This is known as an Entity-Relationship-Diagram or ERD:
+
+![Entity relationship diagram for my campervan user app](static/images/erd.png)
+
+
+
