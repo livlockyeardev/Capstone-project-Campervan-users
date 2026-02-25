@@ -3,6 +3,7 @@
 
 This application allows people to list their private driveways for campervan users looking for cheaper, more relaxed alternatives to traditional campsites. In the scope of the project, I have designed a view page for all listings either in card format or displayed on a map, a booking system and a minimal messaging system. This allows driveway owners to accept or decline bookings and communicate with campervan owners to organise payment and provide further contact details outside of the application. This application does not take payment for the reserved stays. 
 
+![Website Mockup on Multiple Devices](static/images/websitemockup.png)
 ## Designing User Stories and Giving Priority  
 
 I based my user stories both from the view of a driveway owner and a campervan user:
