@@ -4141,7 +4141,7 @@ var slice = [].slice,
       if (((ref = options.cloud_name) != null ? ref.indexOf("/") : void 0) === 0) {
         return '/res' + options.cloud_name;
       }
-      protocol = "http://";
+      protocol = "https://";
       cdnPart = "";
       subdomain = "res";
       host = ".cloudinary.com";
@@ -4167,7 +4167,7 @@ var slice = [].slice,
           host = options.secure_distribution;
         }
       } else if (options.cname) {
-        protocol = "http://";
+        protocol = "https://";
         cdnPart = "";
         subdomain = options.cdn_subdomain ? 'a' + ((crc32(publicId) % 5) + 1) + '.' : '';
         host = options.cname;
