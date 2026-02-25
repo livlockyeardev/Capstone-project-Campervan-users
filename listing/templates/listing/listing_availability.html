@@ -20,10 +20,10 @@
 
   <!-- Form -->
   <div class="mb-3">
-    <form method="post" action="{% url 'block-off-availability' listing.slug %}" class="d-flex align-items-center gap-2">
+    <form method="post" action="{% url 'block-off-availability' listing.slug %}" class="listing-availability-block-form d-flex align-items-center gap-2">
       {% csrf_token %}
-      <input type="date" name="start_date" class="form-control form-control-sm" required>
-      <input type="date" name="end_date" class="form-control form-control-sm" required>
+      <input type="date" aria-label="Start date" name="start_date" class="form-control form-control-sm" required>
+      <input type="date" aria-label="End date" name="end_date" class="form-control form-control-sm" required>
       <button type="submit" class="btn btn-sm btn-primary block-off-btn">
           Block Off Availability
       </button>
@@ -62,8 +62,8 @@
                 <input type="hidden" name="booking_id" value="{{ booking.id }}" />
                 <select name="status" class="form-select form-select-sm" required>
                   <option value="">Update status...</option>
-                  <option value="confirmed">Confirm</option>
-                  <option value="cancelled">Decline</option>
+                  <option aria-label="Confirm booking" value="confirmed">Confirm</option>
+                  <option aria-label="Decline booking" value="cancelled">Decline</option>
                 </select>
                 <textarea name="owner_message" class="form-control form-control-sm" rows="3" placeholder="Sounds good, here's my number 07768567809 to sort payment and send directions"></textarea>
                 <button type="submit" class="btn btn-sm btn-primary">Update booking</button>
@@ -125,7 +125,7 @@
       </div>
 
       <!-- Cancelled bookings -->
-      <div class="card">
+      <div class="card mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">
           <strong>Cancelled Bookings</strong>
         </div>
