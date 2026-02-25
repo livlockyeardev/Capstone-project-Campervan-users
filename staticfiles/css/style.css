@@ -1,3 +1,34 @@
+@media (min-width: 600px) and (max-width: 1024px) {
+  .hero {
+    max-height: 550px;
+    min-height: 0;
+    overflow: hidden;
+  }
+  .hero__content {
+    max-width: 90vw;
+    font-size: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .hero__title {
+    font-size: 1.3rem;
+    line-height: 1.1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .hero__subtitle {
+    font-size: 0.95rem;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+}
 /* General Styles */
 * {
   margin: 0;
@@ -113,13 +144,6 @@ main {
   align-items: center;
   overflow: hidden;
   isolation: isolate;
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
-  .hero {
-    max-height: 280px;
-    min-height: 0;
-  }
 }
 
 
