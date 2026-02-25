@@ -683,7 +683,6 @@ p {
     width: 100%;
   }
   .hero__title {
-    font-size: 1.3rem;
     line-height: 1.1;
     overflow: hidden;
     text-overflow: ellipsis;
