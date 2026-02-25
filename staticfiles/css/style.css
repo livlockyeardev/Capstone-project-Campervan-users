@@ -653,6 +653,12 @@ p {
     color: #007bff;
     transform: scale(1.04);
   }
+@media (max-width: 1024px) {
+ .manage-booking-list{
+  max-width: 95vw;
+
+ }
+}
 
   /* Media Queries */
 
