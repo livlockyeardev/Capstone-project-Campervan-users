@@ -60,14 +60,14 @@ As a traveller, I want to browse driveways on a map so that I can quickly find s
 - [] Filters (price, facilities, noise level, dates) update the map results in real time.  
 - [] Selecting a pin opens the listing preview card.  
 
-7. **Traveller Review Visibility**  
+7. **Traveller Review Visibility**  (Not Complete)
 As a traveller, I want to see reviews on each driveway’s main page so that I can judge whether the spot is trustworthy and comfortable.  
 - [] Listing page displays average rating and total number of reviews.  
 - [] Reviews section shows: reviewer name, date, rating, and written feedback.  
 - [] Reviews are sorted by most recent by default.  
 - [] If no reviews exist, a placeholder message is shown.  
 
-8. **Traveller Review Submission**  
+8. **Traveller Review Submission**  (Not Complete)
 As a traveller, I want to leave a review after my stay so that I can share my experience.  
 - [] User can only review a stay after the checkout date.  
 - [] Review form includes star rating and optional written feedback.  
@@ -102,5 +102,18 @@ Next I needed to design the database structure, how my data would be held and wh
 
 ![Entity relationship diagram for my campervan user app](static/images/erd.png)
 
+## Use of AI 
 
+During this project, I utilised LLMs to help me build my application. I used Microsoft Copilot for image generation, development of user stories and specific acceptance criteria. Furthermore I used the built in chat function within Visual Studio (primarily model GPT -4.1) for:  
+ -  **Code generation**  
+    E.g How would I implement this feature step by step?  
+ -  **Tutor support**  
+    E.g What does this line of code do? Or how does this function work?  
+- **Debugging**  
+   E.g Fix my syntax error from line 34-56  
+
+While incorporating this technology no doubt made me more creative with my project and immproved my efficiency, it often led to repetitive or overly complex solutions that I had to later streamline.  
+
+
+## Testing 
 
