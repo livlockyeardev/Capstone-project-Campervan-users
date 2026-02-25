@@ -2609,9 +2609,9 @@ var slice = [].slice,
      * tag = cloudinary.ImageTag.new("sample", {cloud_name: "demo"})
      * // ImageTag {name: "img", publicId: "sample"}
      * tag.toHtml()
-     * // <img src="http://res.cloudinary.com/demo/image/upload/sample">
+     * // <img src="https://res.cloudinary.com/demo/image/upload/sample">
      * tag.transformation().crop("fit").width(300).toHtml()
-     * // <img src="http://res.cloudinary.com/demo/image/upload/c_fit,w_300/sample">
+     * // <img src="https://res.cloudinary.com/demo/image/upload/c_fit,w_300/sample">
      */
 
     TransformationBase.prototype.toHtml = function() {
@@ -3980,7 +3980,7 @@ var slice = [].slice,
      * @function Cloudinary#sprite_css
      * @param {string} publicId - the public ID of the resource
      * @param {Object} [options] - options for the tag and transformations
-     * @see {@link http://cloudinary.com/documentation/sprite_generation Sprite generation}
+     * @see {@link https://cloudinary.com/documentation/sprite_generation Sprite generation}
      */
 
     Cloudinary.prototype.sprite_css = function(publicId, options) {
