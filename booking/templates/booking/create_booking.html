@@ -16,7 +16,10 @@
           Price Per Night: <strong><span id="price-per-night">£{{ listing.price_per_night }}</span></strong>
           Estimated total: <strong>£<span id="booking-total-preview">0.00</span></strong>
         </p>
-        <button type="submit" class="btn mb-4">Create Booking</button>
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn mb-4">Create Booking</button>
+          <a href="{% url 'listing-detail' listing.slug %}" class="btn btn-secondary mb-4">Back to Listing</a>
+        </div>
       </form>
     </div>
     <!-- Right: Availability Calendar -->
