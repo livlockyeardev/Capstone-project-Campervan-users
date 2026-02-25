@@ -7,7 +7,10 @@
   <form id="create-listing-form" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form|crispy }}
-    <button type="submit" class="btn">Create Listing</button>
+    <div class="d-flex gap-2 mt-2">
+      <button type="submit" class="btn">Create Listing</button>
+      <a aria-label="Back to manage listings" href="{% url 'manage-listings' %}" class="btn btn-secondary">Cancel</a>
+    </div>
   </form>
 </div>
 {% endblock content %}
