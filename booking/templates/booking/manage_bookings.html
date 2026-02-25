@@ -4,7 +4,7 @@
 <div class="container mt-5">
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h1>Manage My Bookings</h1>
-    <a href="{% url 'home' %}" class="btn ms-auto" style="min-width:120px;">Back to Listings</a>
+    <h2><a href="{% url 'home' %}" class="btn ms-auto" style="min-width:120px;">Back to Listings</a></h2>
   </div>
 
   {% if bookings %}
@@ -42,11 +42,11 @@
 
       <!-- Center: Booking Details -->
       <div class="flex-grow-1">
-        <h5 class="mb-1">
+        <h4 class="mb-1">
           <a href="{% url 'listing-detail' booking.listing.slug %}" class="text-decoration-none text-dark booking-link-title">
             {{ booking.listing.title }}
           </a>
-        </h5>
+        </h4>
         <p class="text-muted small mb-1">{{ booking.listing.location }}</p>
         <p class="mb-1">
           <strong>{{ booking.check_in }}</strong> →
@@ -80,7 +80,7 @@
           <i class="fas fa-times"></i>
         </button>
         <!-- Modal -->
-        <div class="modal fade" id="cancelModal-{{ booking.id }}" tabindex="-1" aria-labelledby="cancelModalLabel-{{ booking.id }}" aria-hidden="true">
+        <div class="modal fade" id="cancelModal-{{ booking.id }}" role="dialog" tabindex="-1" aria-labelledby="cancelModalLabel-{{ booking.id }}" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
