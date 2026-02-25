@@ -720,3 +720,22 @@ p {
     white-space: nowrap;
   }
 }
+
+/* Sign up/login form styling */
+
+.account-box input,
+.account-box select,
+.account-box textarea {
+    border-radius: 50px !important;
+    border: 1px solid #f46767;
+    padding: 0.75rem;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+.account-box input:focus,
+.account-box select:focus,
+.account-box textarea:focus {
+    border-color: #c12a52;
+    box-shadow: 0 0 0 3px #ffe4e9;
+    outline: none;
+}

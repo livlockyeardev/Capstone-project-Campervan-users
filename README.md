@@ -121,8 +121,9 @@ While incorporating this technology no doubt made me more creative with my proje
 For testing of my website, I first manually tested each user story  
 **Results**  
 Each user story, designated as high priority was completed but certain features, such as the ability to filter and reorder listings based on certain qualities, could not be implemented in time.  
-Two User stories, designated as low priority, relating to user ability to leave reviews of past stays, could not be completed in the scope of the project. Nonetheless, the ability for the owner to send a message to the user making a booking means further communication outside the application can be arranged.
+Two User stories, designated as low priority, relating to user ability to leave reviews of past stays, could not be completed in the scope of the project. Nonetheless, the ability for the owner to send a message to the user making a booking allows for further communication outside of the application.
 
 
-I then generated lighthouse reports and checked for validated code:
+I then generated lighthouse reports and validated code:
+
 
