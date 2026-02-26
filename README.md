@@ -123,7 +123,13 @@ For testing of my website, I first manually tested each user story
 Each user story, designated as high priority was completed but certain features, such as the ability to filter and reorder listings based on certain qualities, could not be implemented in time.  
 Two User stories, designated as low priority, relating to user ability to leave reviews of past stays, could not be completed in the scope of the project. Nonetheless, the ability for the owner to send a message to the user making a booking allows for further communication outside of the application.
 
+I then implemented automated testing for my forms in listings and bookings apps.  
 
-I then generated lighthouse reports and validated code:
+Finally, I then generated lighthouse reports and validated code:
+![Lighthouse and testing report for my application](static/images/testing.png)
+
+Generally, accessability and performance scored highly, but I scored lower points for best practice in pages that included Cloudinary sourced images. This was due to Cloudinary setting an insecure connection (http instead of https) for each image. This is unadvisable as it makes a website easier to access maliciously. While I tried to alter the code, I could not fix this detail.
+All code was validated without errors, with one remaining regarding the use of an aria-labelledby attribute in a form. As this is spontaneously generated code, using the all-auth application, I was not able to locate the form code to adjust its attributes.
+![Error remaining in code validator referring to accessibility labelling](static/images/remaining.png)
 
 
