@@ -127,10 +127,12 @@ class ManageBookings(LoginRequiredMixin, ListView):
     context_object_name = "bookings"
 
     def get_queryset(self):
+        # Only show bookings made by the user where they are NOT the owner of the listing
         return (
             Booking.objects
             .select_related("listing")
             .filter(user=self.request.user)
+            .exclude(listing__author=self.request.user)
             .order_by("-created_on")
         )
 

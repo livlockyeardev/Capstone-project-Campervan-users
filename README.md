@@ -54,7 +54,9 @@ Do not push your code to github until the next step is followed, to avoid spread
 9. Start the development server:
     - `python manage.py runserver`
 
-10. Open your browser and go to `http://127.0.0.1:8000/` to view the site locally.
+10. Open your browser and go to `http://127.0.0.1:8000/` to view the site locally. 
+Alternatively, to deploy through Heroku, make an account and list your variables under
+settings > config vars. Link to your cloned GitHub repository and, under Deploy, select 'Deploy Branch'
 
 ## User Experience Design 
 
