@@ -296,9 +296,10 @@ h6,
 
 .floating-map-btn {
   position: fixed;
-  left: 85%;
+  right: 10vw;
+  left: auto;
   bottom: 120px; /* Increased from 20px to 90px to sit above footer */
-  transform: translateX(-30%);
+  transform: none;
   z-index: 1050;
   background: rgba(255, 255, 255, 0.85);
   color: #dc3545;
@@ -317,6 +318,7 @@ h6,
   align-items: center;
   gap: 0.5rem;
   backdrop-filter: blur(2px);
+  white-space: nowrap;
 }
 
 .floating-map-btn:hover,
