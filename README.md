@@ -204,6 +204,9 @@ All code was validated without errors, with one remaining regarding the use of a
 
 External code was utilised to implement calendar functionality and map generation.
 
-**Calendar**
+**Calendar**  
 Generates a UI calendar display for the user to see when the listing is already booked. Code adapted from FullCalendar library ([Link for Calendar Code](https://fullcalendar.io/))
 
+**Map**  
+Shows all listings on a map view, if the town entered has valid latitude and longitude coordinates.
+Coordinates calculated using the package GeoPy and Map powered with Leaflet.js ([Link for Map Generator](https://leafletjs.com/))
