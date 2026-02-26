@@ -62,8 +62,8 @@ I based my user stories both from the view of a driveway owner and a campervan u
 
 1. **Login Page/Authentication**  
 As a user I can create an account so that I can browse listings as a traveller or upload a new listing as an owner.  
- - [] Initial Login Page shows when website first appears
- - [] User is prompted for details:
+ - [ ] Initial Login Page shows when website first appears
+ - [ ] User is prompted for details:
      Unique username
      An email
      A Password
@@ -170,15 +170,24 @@ While incorporating this technology no doubt made me more creative with my proje
 
 ## Testing 
 
+### Manual Testing
 For testing of my website, I first manually tested each user story  
 **Results**  
 Each user story, designated as high priority was completed but certain features, such as the ability to filter and reorder listings based on certain qualities, could not be implemented in time.  
 Two User stories, designated as low priority, relating to user ability to leave reviews of past stays, could not be completed in the scope of the project. Nonetheless, the ability for the owner to send a message to the user making a booking allows for further communication outside of the application.
+ 
+### Automated Testing
+I then implemented automated testing, designing 9 tests to test for edge cases for my forms in listings and bookings apps.  
 
-I then implemented automated testing for my forms in listings and bookings apps.  
+**Results** 
+![Automated testing result](static/images/automated.png)
+
+**Lighthouse and Code Validation**
 
 Finally, I then generated lighthouse reports and validated code:
 ![Lighthouse and testing report for my application](static/images/testing.png)
+
+**Results**
 
 Generally, accessability and performance scored highly, but I scored lower points for best practice in pages that included Cloudinary sourced images. This was due to Cloudinary setting an insecure connection (http instead of https) for each image. This is unadvisable as it makes a website easier to access maliciously. While I tried to alter the code, I could not fix this detail.
 All code was validated without errors, with one remaining regarding the use of an aria-labelledby attribute in a form. As this is spontaneously generated code, using the all-auth application, I was not able to locate the form code to adjust its attributes.
