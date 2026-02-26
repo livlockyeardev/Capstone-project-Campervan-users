@@ -6,7 +6,7 @@
 {% block content %}
 <div class="container mt-5">    <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card mb-4"">
+            <div class="card mb-4">
                 <div class="card-body">
                     <h1 class="card-title text-center mb-4">{% trans "Sign Up" %}</h1>
 
@@ -20,7 +20,8 @@
                         {% for field in form %}
                             <div class="mb-3 row signup-field-row">
                                 <div class="col-5 text-start">{{ field.label_tag }}</div>
-                                <div class="col-7 account-box">{{ field }}</div>
+                                <div class="col-7 account-box">
+                                </div>
                                 {% if field.errors %}
                                     <div class="col-12 text-danger small mt-1">
                                         {{ field.errors }}
