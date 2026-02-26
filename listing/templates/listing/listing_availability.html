@@ -90,15 +90,13 @@
                 {% if booking.user == listing.author %}
                   <div class="d-flex align-items-center gap-2">
                     <span class="fw-semibold">Blocked Off</span>
-                    <span class="small text-muted"> {{ booking.check_in }} → {{ booking.check_out }}</span>
-                    <span>
-                      <form method="post" style="display:inline;">
-                        {% csrf_token %}
-                        <input type="hidden" name="booking_id" value="{{ booking.id }}" />
-                        <input type="hidden" name="status" value="cancelled" />
-                        <button type="submit" class="btn btn-sm btn-danger">Cancel</button>
-                      </form>
-                    </span>
+                    <span class="small text-muted"> {{ booking.check_in }} → {{ booking.check_out }}</span> 
+                    <form method="post" style="display:inline;">
+                      {% csrf_token %}
+                      <input type="hidden" name="booking_id" value="{{ booking.id }}" />
+                      <input type="hidden" name="status" value="cancelled" />
+                      <button type="submit" class="btn btn-sm btn-danger">Cancel</button>
+                    </form>
                   </div>
                 {% else %}
                   <div class="fw-semibold">{{ booking.user.username }}</div>

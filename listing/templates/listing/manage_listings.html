@@ -11,13 +11,21 @@
       </span>
       {% endif %}
     </h1>
-    <a
-      href="{% url 'create-listing' %}"
-      class="btn btn-lg ms-3"
-      title="Add new listing"
-    >
-      <i class="fas fa-plus"></i>
-    </a>
+    <div class="d-flex gap-2">
+      <a
+        href="{% url 'home' %}"
+        class="btn btn-lg"
+        title="Back to Listings"
+      >Back to listings
+      </a>
+      <a
+        href="{% url 'create-listing' %}"
+        class="btn btn-lg ms-1"
+        title="Add new listing"
+      >
+        <i class="fas fa-plus"></i>
+      </a>
+    </div>
   </div>
 
   {% if listings %}
@@ -45,7 +53,7 @@
 
       <!-- Center: Title -->
       <div class="flex-grow-1">
-        <h5 class="mb-1 manage-listing-title">{{ listing.title }}</h5>
+        <h2 class="h5 mb-1 manage-listing-title">{{ listing.title }}</h5>
         <p class="text-muted small mb-0">{{ listing.location }}</p>
       </div>
 
