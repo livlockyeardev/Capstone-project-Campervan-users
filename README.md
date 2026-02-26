@@ -56,7 +56,7 @@ Do not push your code to github until the next step is followed, to avoid spread
 
 10. Open your browser and go to `http://127.0.0.1:8000/` to view the site locally.
 
-## Designing User Stories and Giving Priority  
+## User Experience Design 
 
 I based my user stories both from the view of a driveway owner and a campervan user:
 
@@ -127,13 +127,16 @@ As a traveller, I want to leave a review after my stay so that I can share my ex
 - [ ] Submitted reviews appear on the listing page after moderation rules (if any).  
 - [ ] User cannot submit multiple reviews for the same stay.  
 
-I then arranged these in a Kanban project board, giving each story a level of priority from could have to must have. This gave me room to adjust the scope of my project as time continued to ensure a Minimum Viable Product, or MVP, was delivered.
-
-![Kanban project board with my user stories listed with priority given](static/images/kanban.png)
-
-## Wireframing for User Stories
+### Wireframing for User Stories
 
 ![Figma WireFrame of Project](static/images/DriveAway.png)
+
+## Agile Development Process
+
+User storiers were mapped on to a Kanban project board, giving each story a level of priority from could have to must have. This gave me room to adjust the scope of my project as time continued to ensure a Minimum Viable Product, or MVP, was delivered. I created three status columns, to-do, in progress and done to monitor the progress of my project.
+
+![Kanban project board with my user stories listed with priority given](static/images/kanban.png)
+[Project Board Link](https://github.com/users/livlockyeardev/projects/9)
 
 ## The Design Process
 
@@ -158,15 +161,18 @@ Next I needed to design the database structure, how my data would be held and wh
 ## Use of AI 
 
 During this project, I utilised LLMs to help me build my application. I used Microsoft Copilot for image generation, development of user stories and specific acceptance criteria. Furthermore I used the built in chat function within Visual Studio (primarily model GPT -4.1) for:  
- -  **Code generation**  
+   -  **Code generation**  
     E.g How would I implement this feature step by step?  
- -  **Tutor support**  
+    Example in Code: AI used to determine logic of block_off_availability function
+    Led to use of decorator to authorise user is logged in as well as implementation of try: and except: logic. 
+   -  **Tutor support**  
     E.g What does this line of code do? Or how does this function work?  
-- **Debugging**  
+   - **Debugging**  
    E.g Fix my syntax error from line 34-56  
+   -  **Building Automated Tests**
+   To test for edge cases of my front end CRUD functionality forms (9 tests generated)
 
 While incorporating this technology no doubt made me more creative with my project and immproved my efficiency, it often led to repetitive or overly complex solutions that I had to later streamline.  
-
 
 ## Testing 
 
@@ -194,4 +200,10 @@ All code was validated without errors, with one remaining regarding the use of a
 
 ![Error remaining in code validator referring to accessibility labelling](static/images/remaining.png)
 
+## Credits
+
+External code was utilised to implement calendar functionality and map generation.
+
+**Calendar**
+Generates a UI calendar display for the user to see when the listing is already booked. Code adapted from FullCalendar library ([Link for Calendar Code](https://fullcalendar.io/))
 
