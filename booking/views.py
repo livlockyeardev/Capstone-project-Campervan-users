@@ -11,6 +11,15 @@ from django.contrib import messages
 
 
 class CreateBooking(LoginRequiredMixin, CreateView):
+    """
+    Handles the creation of a new booking for a listing.
+    - Ensures the user is logged in.
+    - Loads the relevant listing based on the slug in the URL.
+    - Validates that the booking dates meet the listing's minimum and maximum night requirements.
+    - Checks for overlapping confirmed bookings and prevents double-booking.
+    - Adds appropriate error messages for invalid input or booking conflicts.
+    - On success, associates the booking with the current user and listing, and displays a success message.
+    """
     model = Booking
     form_class = BookingForm
     template_name = "booking/create_booking.html"
@@ -62,9 +71,13 @@ class CreateBooking(LoginRequiredMixin, CreateView):
         messages.success(self.request, "Booking created successfully.")
         return super().form_valid(form)
 
+    # Returns the URL to redirect to after a successful booking.
+    # Redirects the user to the booking confirmation page for the newly created booking.
     def get_success_url(self):
         return reverse_lazy("booking_confirmation", kwargs={"pk": self.object.pk})
 
+    # Takes the current listing and its confirmed
+    # booking events to display in a calendar.
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["listing"] = self.listing
@@ -86,6 +99,12 @@ class CreateBooking(LoginRequiredMixin, CreateView):
 
 
 class BookingConfirmation(LoginRequiredMixin, DetailView):
+    """
+    Displays the booking confirmation page for a user's booking.
+    - Ensures only the user who made the booking can view the confirmation.
+    - Loads the booking and its associated listing for display in the template.
+    - Adds the listing to the context for use in the confirmation template.
+    """
     model = Booking
     template_name = "booking/booking_confirmation.html"
     context_object_name = "booking"
@@ -97,9 +116,12 @@ class BookingConfirmation(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context["listing"] = self.object.listing
         return context
-    
-    
+
+
 class ManageBookings(LoginRequiredMixin, ListView):
+    """Displays a list of the user's bookings for management.
+    - Ensures the user is logged in.
+    - Bookings ordered by creation date."""
     model = Booking
     template_name = "booking/manage_bookings.html"
     context_object_name = "bookings"
@@ -111,9 +133,13 @@ class ManageBookings(LoginRequiredMixin, ListView):
             .filter(user=self.request.user)
             .order_by("-created_on")
         )
-    
+
 
 @login_required
+# Allows a listing owner to block off availability by creating a new Booking instance for specific dates.
+# The booking is created with status set to 'confirmed' and an empty registration plate.
+# Validates date input and prevents invalid or reversed date ranges.
+# Login decorator ensures only authenticated users can access this view.
 def block_off_availability(request, slug):
     listing = get_object_or_404(Listing, slug=slug, author=request.user)
     if request.method == "POST":
@@ -131,7 +157,7 @@ def block_off_availability(request, slug):
                     user=request.user,
                     check_in=check_in,
                     check_out=check_out,
-                    status="confirmed",  # or "blocked" if you want a custom status
+                    status="confirmed", 
                     registration_plate="",
                 )
             except Exception:
@@ -141,6 +167,8 @@ def block_off_availability(request, slug):
 
 
 class CancelBooking(LoginRequiredMixin, DetailView):
+    """Allows a user to cancel their booking by changing its status to 'cancelled'.
+    - Ensures the user is logged in and returns a message confirming the cancellation."""
     model = Booking
 
     def post(self, request, *args, **kwargs):

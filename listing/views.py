@@ -13,19 +13,22 @@ from django.contrib import messages
 from django.utils.html import escape
 
 
-# Create your views here.
 class ListingList(generic.ListView):
+    """Displays a list of all listings, ordered by creation date with the newest first."""
     queryset = Listing.objects.all().order_by("-created_on")
     template_name = "listing/index.html"
 
 
 class ListingDetail(generic.DetailView):
+    """Displays detailed information about a specific listing, identified by its slug."""
     model = Listing
     template_name = "listing/listing_detail.html"
     context_object_name = "listing"
 
 
 class ListingCreate(LoginRequiredMixin, generic.CreateView):
+    """Allows a logged-in user to create a new listing.
+    Reverses to home page on success and displays a success message."""
     model = Listing
     form_class = ListingForm
     template_name = "listing/create_listing.html"
@@ -39,6 +42,9 @@ class ListingCreate(LoginRequiredMixin, generic.CreateView):
    
 
 class ManageListings(LoginRequiredMixin, ListView):
+    """Displays a list of listings created by the logged-in user,
+    ordered by creation date with the newest first.
+    - Annotates each listing with the count of pending bookings to show how many bookings are awaiting approval."""
     model = Listing
     template_name = "listing/manage_listings.html"
     context_object_name = "listings"
@@ -58,6 +64,9 @@ class ManageListings(LoginRequiredMixin, ListView):
 
 
 class ListingUpdate(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+    """Creates an update view for the Listing model, allowing users to edit their own listings.
+    - Ensures the user is logged in and is the author of the listing.
+    - Displays a success message upon successful update and redirects to the manage listings page."""
     model = Listing
     form_class = ListingForm
     template_name = "listing/edit_listing.html"
@@ -74,6 +83,7 @@ class ListingUpdate(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView)
 
 
 class ListingDelete(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    """Creates a delete view for the Listing model, allowing users to delete their own listings."""
     model = Listing
     template_name = "listing/delete_listing.html"
     success_url = reverse_lazy("manage-listings")
@@ -90,7 +100,8 @@ class ListingDelete(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView)
 @login_required
 def listing_availability(request, slug):
     listing = get_object_or_404(Listing, slug=slug, author=request.user)
-
+    """Allows listing owner to change status of a booking to 'confirmed' or 'cancelled' 
+    and add an optional message to the booking."""
     if request.method == "POST":
         booking_id = request.POST.get("booking_id")
         new_status = request.POST.get("status")
@@ -118,7 +129,9 @@ def listing_availability(request, slug):
         else:
             messages.success(request, "Booking note updated.")
         return redirect(reverse("listing-availability", kwargs={"slug": listing.slug}))
-
+    # Collects confirmed bookings for the listing and formats them as events for a calendar view, 
+    # distinguishing between owner-blocked dates and user bookings with different colors. 
+    # Also retrieves pending and cancelled bookings to display separately in the template.
     confirmed_qs = Booking.objects.filter(listing=listing, status="confirmed").order_by("check_in")
     pending_bookings = Booking.objects.filter(listing=listing, status="pending").order_by("check_in")
     cancelled_bookings = Booking.objects.filter(listing=listing, status="cancelled").order_by("-created_on")
@@ -150,6 +163,9 @@ def listing_availability(request, slug):
 
 
 class ListingMapView(generic.TemplateView):
+    """Collects listings with geocoded locations and formats them
+    for display on a map with markers showing the title, location,
+    price per night, and featured image."""
     template_name = "listing/map_view.html"
 
     def get_context_data(self, **kwargs):

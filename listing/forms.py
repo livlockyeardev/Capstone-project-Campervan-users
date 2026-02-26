@@ -5,6 +5,9 @@ from .models import Listing
 
 
 class ListingForm(forms.ModelForm):
+    """Form for creating an instance of the Listing model.
+    - Validates that minimum nights is less than maximum nights and both are greater than 0.
+    - Validates that price per night is not negative."""
     def clean(self):
         cleaned_data = super().clean()
         min_nights = cleaned_data.get('min_nights')
@@ -32,7 +35,7 @@ class ListingForm(forms.ModelForm):
             "max_nights",
             "price_per_night",
         )
-
+# Labels for form fields and a widget for the description field to use a textarea with 5 rows.
         labels = {
             "title": "Title (Maximum Five Words)",
             "featured_image": "Display Image",
@@ -48,6 +51,7 @@ class ListingForm(forms.ModelForm):
             "description": forms.Textarea(attrs={"rows": 5}),
         }
 
+  # form constructor calls parent class constructor, controls form layout and adds submit button
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()

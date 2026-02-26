@@ -75,27 +75,13 @@ footer,
   color: #111;
   text-decoration: none;
 }
-
-.nav-item {
-  color: var(--white) !important;
-  font-weight: 500;
-  padding: 0.5rem 1rem !important;
-  margin: 0 0.5rem !important;
-  background-color: var(--light-pink) !important;
-  border-radius: 20px !important;
-  transition: all 0.3s ease;
-}
-
-.nav-item:hover {
+/* Styling for active/selected dropdown item */
+.dropdown-menu .dropdown-item:active,
+.dropdown-menu .dropdown-item.active,
+.dropdown-menu .dropdown-item:focus {
   background-color: var(--dark-pink) !important;
-  color: var(--white) !important;
+  color: #fff !important;
 }
-
-.nav-item.active {
-  background-color: var(--dark-pink) !important;
-  color: var(--white) !important;
-}
-
 /* Main Content */
 main {
   background-color: var(--white);
@@ -475,6 +461,128 @@ form label {
   word-break: break-word;
 }
 
+/* in-app notifications for bookings */
+
+.pending-bookings-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.2rem;
+  height: 1.2rem;
+  padding: 0 0.3rem;
+  border-radius: 25px;
+  background: #dc3545;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.pending-bookings-badge-lg {
+  min-width: 2.4rem;
+  height: 2.4rem;
+  padding: 0 0.65rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.calendar-notification-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 1rem;
+  height: 1rem;
+  padding: 0 0.25rem;
+  border-radius: 999px;
+  background: #dc3545;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1rem;
+  text-align: center;
+  border: 2px solid #fff;
+}
+
+.listing-toilet-icon {
+  width: 20px;
+  height: 20px;
+  max-width: 20px;
+  max-height: 20px;
+  display: block;
+}
+
+/* manage booking page styles */
+
+  .booking-link-img {
+    transition: transform 0.2s;
+    display: inline-block;
+  }
+  .booking-link-img:hover {
+    transform: scale(1.06);
+    z-index: 2;
+  }
+  .booking-link-title {
+    transition: color 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .booking-link-title:hover {
+    color: #007bff;
+    transform: scale(1.04);
+  }
+@media (max-width: 1024px) {
+ .manage-booking-list{
+  max-width: 95vw;
+
+ }
+}
+
+/* Booking request confirmation badge */
+
+.confirmed {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.2rem;
+  height: 1.2rem;
+  padding: 0 0.3rem;
+  border-radius: 25px;
+  background: #bbebc6;
+  color: #000000;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.pending {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.2rem;
+  height: 1.2rem;
+  padding: 0 0.3rem;
+  border-radius: 25px;
+  background: #ffc107;
+  color: #212529;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.cancelled {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.2rem;
+  height: 1.2rem;
+  padding: 0 0.3rem;
+  border-radius: 25px;
+  background: #f98691;
+  color: #000000;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
 /* Footer Styles */
 .footer {
   background-color: var(--light-pink);
@@ -619,127 +727,6 @@ p {
   margin-bottom: 1.5rem !important;
 }
 
-/* Booking request confirmation badge */
-
-.confirmed {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1.2rem;
-  height: 1.2rem;
-  padding: 0 0.3rem;
-  border-radius: 25px;
-  background: #bbebc6;
-  color: #000000;
-  font-size: 0.7rem;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.pending {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1.2rem;
-  height: 1.2rem;
-  padding: 0 0.3rem;
-  border-radius: 25px;
-  background: #ffc107;
-  color: #212529;
-  font-size: 0.7rem;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.cancelled {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1.2rem;
-  height: 1.2rem;
-  padding: 0 0.3rem;
-  border-radius: 25px;
-  background: #f98691;
-  color: #000000;
-  font-size: 0.7rem;
-  font-weight: 700;
-  line-height: 1;
-}
-
-/* in-app notifications for bookings */
-
-.pending-bookings-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1.2rem;
-  height: 1.2rem;
-  padding: 0 0.3rem;
-  border-radius: 25px;
-  background: #dc3545;
-  color: #fff;
-  font-size: 0.7rem;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.pending-bookings-badge-lg {
-  min-width: 2.4rem;
-  height: 2.4rem;
-  padding: 0 0.65rem;
-  font-size: 1.15rem;
-  font-weight: 700;
-}
-
-.calendar-notification-badge {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  min-width: 1rem;
-  height: 1rem;
-  padding: 0 0.25rem;
-  border-radius: 999px;
-  background: #dc3545;
-  color: #fff;
-  font-size: 0.65rem;
-  font-weight: 700;
-  line-height: 1rem;
-  text-align: center;
-  border: 2px solid #fff;
-}
-
-.listing-toilet-icon {
-  width: 20px;
-  height: 20px;
-  max-width: 20px;
-  max-height: 20px;
-  display: block;
-}
-
-/* manage booking page styles */
-
-  .booking-link-img {
-    transition: transform 0.2s;
-    display: inline-block;
-  }
-  .booking-link-img:hover {
-    transform: scale(1.06);
-    z-index: 2;
-  }
-  .booking-link-title {
-    transition: color 0.2s, transform 0.2s;
-    display: inline-block;
-  }
-  .booking-link-title:hover {
-    color: #007bff;
-    transform: scale(1.04);
-  }
-@media (max-width: 1024px) {
- .manage-booking-list{
-  max-width: 95vw;
-
- }
-}
 
   /* Media Queries */
 

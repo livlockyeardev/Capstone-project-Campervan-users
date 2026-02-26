@@ -6,10 +6,15 @@ from .utils import geocode_town
 
 
 NOISE_LEVELS = ((0, "Quiet"), (1, "Moderate"), (2, "Loud"))
-# Create your models here.
 
 
 class Listing(models.Model):
+    """Represents a listing created by a user, containing details about the
+    listing such as title, description, location, and pricing.
+        Each listing is associated with an author (the user who created it)
+        and can have an optional featured image.
+        The model also includes fields for geocoding the location to store
+        latitude and longitude for map display."""
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(
