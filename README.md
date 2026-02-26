@@ -5,6 +5,18 @@ This application allows people to list their private driveways for campervan use
 
 ![Website Mockup on Multiple Devices](static/images/websitemockup.png)
 
+README contents: 
+
+## Contents
+1. [Deployment Instructions](#deployment-instructions)
+2. [User Experience Design](#user-experience-design)
+3. [Agile Development Process](#agile-development-process)
+4. [The Design Process](#the-design-process)
+5. [Database Design (ERD)](#database-design-erd)
+6. [Use of AI](#use-of-ai)
+7. [Testing](#testing)
+8. [Credits](#credits)
+
 ## Deployment Instructions
 
 **Live link to the deployed website through Heroku**: https://driveaway-e8200983e2d1.herokuapp.com/
@@ -154,11 +166,15 @@ And the following minimal font as a logo and as my main header text:
 
 ![Font Selection](static/images/font.png)
 
+This was later adjusted to a darker pink shade to follow accessibility guidelines, ensuring sufficient contrast.
+
 ## Database Design (ERD)
 
 Next I needed to design the database structure, how my data would be held and which data types would be keys to link to other tables of data. This is known as an Entity-Relationship-Diagram or ERD:
 
 ![Entity relationship diagram for my campervan user app](static/images/erd.png)
+
+I planned for three main models to hold listing data, booking data and review data.
 
 ## Use of AI 
 
@@ -187,7 +203,7 @@ Two User stories, designated as low priority, relating to user ability to leave 
 ### Automated Testing
 I then implemented automated testing, designing 9 tests to test for edge cases for my forms in listings and bookings apps.  
 
-**Results** 
+**Results**  
 ![Automated testing result](static/images/automated.png)
 
 **Lighthouse and Code Validation**
@@ -195,7 +211,7 @@ I then implemented automated testing, designing 9 tests to test for edge cases f
 Finally, I then generated lighthouse reports and validated code:
 ![Lighthouse and testing report for my application](static/images/testing.png)
 
-**Results**
+**Results**  
 
 Generally, accessability and performance scored highly, but I scored lower points for best practice in pages that included Cloudinary sourced images. This was due to Cloudinary setting an insecure connection (http instead of https) for each image. This is unadvisable as it makes a website easier to access maliciously. While I tried to alter the code, I could not fix this detail.
 All code was validated without errors, with one remaining regarding the use of an aria-labelledby attribute in a form. As this is spontaneously generated code, using the all-auth application, I was not able to locate the form code to adjust its attributes.
